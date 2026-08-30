@@ -455,15 +455,14 @@ code {
 #movieListContainer, #watchlistContainer {
   display: grid;
   
-  /* 🌟 THE CORE WEBPAGE GRID MAGIC 🌟 */
-  /* This automatically fills row spaces with as many 180px cards as can physically fit, scaling up flawlessly */
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); 
+  /* 🌟 CHANGED: Increased minmax from 180px to 220px to force the grid columns to render larger */
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
   
-  gap: 24px;                     /* Wider layout gutters for expansive desktop monitors */
+  gap: 28px;                     /* Slightly wider gaps to balance out the larger card sizing */
   width: 100%;
-  max-width: 1200px;             /* 🟢 Hard cap so it looks incredibly premium and neat on large displays */
+  max-width: 1240px;             /* Expanded max-width bounds to fit the bigger column rows cleanly */
   margin: 0 auto;
-  padding: 0 2rem 5rem 2rem;     /* Spacious outer padding boundaries */
+  padding: 0 2rem 5rem 2rem;     
   box-sizing: border-box;
 }
 
@@ -498,7 +497,10 @@ code {
 /* 🖼️ 3. THE WEBSITE ASPECT POSTER COMPONENT */
 .movie img {
   width: 100% !important;
-  height: 260px !important;       /* 🟢 Elevated poster height scaling beautifully within website grids */
+  
+  /* 🌟 CHANGED: Increased height from 260px to 320px to match the wider card structure perfectly */
+  height: 320px !important;       
+  
   object-fit: cover;              
   border-radius: 18px;            
   margin-bottom: 14px;
@@ -514,7 +516,7 @@ code {
 
 /* Movie Title Target */
 .movie-info h3 {
-  font-size: 1rem;               /* Enhanced title proportions for computer text tracking */
+  font-size: 1.1rem;             /* Boosted font size slightly to match the larger card layout proportions */
   font-weight: 700;
   margin: 0 0 4px 0;
   color: #ffffff;
