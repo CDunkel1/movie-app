@@ -4,22 +4,37 @@ import { useState } from 'react';
 export default function SearchBar({ onSearch }) {
   const [text, setText] = useState('');
 
-  const handleSearchClick = () => {
+  const handleSearchSubmit = () => {
     if (text.trim() !== '') {
-      onSearch(text); // 👈 Passes the text up to App.jsx
+      onSearch(text); 
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleSearchSubmit();
     }
   };
 
   return (
     <div className="search-container">
-      <input 
-        type="text" 
-        placeholder="Search for a movie..." 
-        value={text} 
-        onChange={(e) => setText(e.target.value)} // 👈 Tracks what you type
-      />
-      {/* 👇 Fires the function when clicked */}
-      <button id="search-btn" onClick={handleSearchClick}>Search</button>
+      <div className="search-wrapper">
+        <span className="search-icon">🔍</span>
+        
+        <input 
+          id="search-bar" 
+          type="text" 
+          placeholder="Search for movies, genres, actors..." 
+          value={text} 
+          onChange={(e) => setText(e.target.value)} 
+          onKeyDown={handleKeyDown} 
+        />
+
+        {/* 🌟 NESTED BUTTON RESTORED ON THE RIGHT */}
+        <button id="search-btn" onClick={handleSearchSubmit}>
+          Search
+        </button>
+      </div>
     </div>
   );
 }

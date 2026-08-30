@@ -117,10 +117,12 @@ code {
     linear-gradient(to bottom, rgba(18,20,29,0.3), rgba(18,20,29,1)), 
     radial-gradient(circle, transparent, rgba(18,20,29,0.5)), 
     var(--bg-img);
-
-  
 }
-
+ .header-card{
+  background-color: black;
+  padding: 60px;
+  border-radius: 20px;
+ }
 
   #watchlist, #watchlistContainer{
     display: flex;
@@ -181,57 +183,88 @@ code {
   }
 
   .search-container {
-    display: flex;
-    justify-content: center;
-    margin:   2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   
-  }
+  /* 🌟 THE POSITIONING & SPACING FIXES 🌟 */
+  width: 90%;                   /* Takes up comfortable width on smaller mobile viewports */
+  max-width: 570px;             /* 🟢 Hard cap so it looks premium and low-profile like the mobile mock */
+  margin: 3.5rem auto 4.5rem auto; /* 🟢 Adds spacious breathing room (Top | Right/Left Centering | Bottom) */
   
-  .search-wrapper {
-    display: flex;
-    align-items: center;
-    background-color: #2e2e2e;
-    border-radius: 12px;
-    overflow: hidden;
-    width: 80vw;
-    margin: 0;
-  }
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ /* 🌟 THE MAIN CAPSULE CONTAINER */
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative; /* 🟢 Allows the button to lock layout positions if necessary */
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.05); 
+  backdrop-filter: blur(10px);
+  border-radius: 50px; 
+  border: 1px solid rgba(255, 255, 255, 0.1); 
+  padding: 0 0 0 1.25rem; 
+  overflow: hidden; /* 🟢 Clips button corners instantly */
+  min-height: 3.2rem; /* 🟢 Explicit height baseline so both elements sync */
+  box-sizing: border-box;
+}
+
+/* ⌨️ TRANSPARENT INPUT CORE */
+#search-bar {
+  flex: 1;
+  background-color: transparent !important;
+  border: none !important;
+  color: #ffffff;
+  font-size: 1rem;
+  padding: 0.85rem 0;
+  outline: none !important;
+  box-sizing: border-box;
+}
+
+/* 🟢 LIME 3D INTERACTIVE BUTTON */
+#search-btn {
+  margin: 0;
+  border: none !important;
+  outline: none !important;
+  cursor: pointer;
   
-  .search-icon {
-    padding: 0 .75rem;
-    font-size: 1.25rem;
-    color: #bdbdbd;
-    margin:0;
-  }
+  /* 🛠️ DIMENSIONS & ALIGNMENT RESETS */
+  padding: 0 2.5rem !important; /* Larger horizontal size */
+  height: 3.2rem !important;    /* 🌟 Match the min-height of .search-wrapper EXACTLY 1:1 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+
+  /* 🛠️ VISUAL STYLE & COLOR PROFILE */
+  background-color: #ccff23 !important; /* Bright neon lime-green */
+  color: #08060d !important;            /* High-contrast dark text */
+  font-weight: 700;
+  font-size: 1rem;
   
-  #search-bar {
-    width: 80vw;
-    border-top-left-radius:  5px;
-    border-bottom-left-radius: 5px;
-    background-color: #2E2E2F;
-    border: none;
-    color: white;
-    font-size: 1rem;
-    padding: .875rem .625rem;
-    outline: none;
-    margin:0;
-  }
-  
-  #search-btn {
-    margin: 0;
-    background-color: #555;
-    color: white;
-    border: none;
-    padding: .875em 2.75em;
-    cursor: pointer;
-    font-size: 1rem;
-    height: 100%;
-    transition: background 0.2s ease-in-out;
-  }
-  
-  #search-btn:hover {
-    background-color: #666;
-  }
+  /* 🛠️ 3D SHADOW SYSTEM */
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.4),  /* Top rim highlight */
+              inset 0 -3px 0 rgba(0, 0, 0, 0.25),      /* Bottom deep bevel */
+              -2px 0 10px rgba(0, 0, 0, 0.2);          /* Left side separator shadow */
+              
+  transform: translateY(0);
+  transition: all 0.1s ease-in-out;
+}
+
+#search-btn:hover {
+  background-color: #d8ff47 !important; /* Subtle glow shift */
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.5),
+              inset 0 -4px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* 🟢 PHYSICAL 3D CLICK CLICK CLICK */
+#search-btn:active {
+  background-color: #ccff23 !important;
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.4) !important; /* Implodes layout depths on click */
+}
 
 
   .watchlist-img{
