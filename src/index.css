@@ -1,0 +1,349 @@
+
+:root {
+  --text: #6b6375;
+  --text-h: #08060d;
+  --bg: #fff;
+  --border: #e5e4e7;
+  --code-bg: #f4f3ec;
+  --accent: #aa3bff;
+  --accent-bg: rgba(170, 59, 255, 0.1);
+  --accent-border: rgba(170, 59, 255, 0.5);
+  --social-bg: rgba(244, 243, 236, 0.5);
+  --shadow:
+    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 18px/145% var(--sans);
+  letter-spacing: 0.18px;
+  color-scheme: light dark;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #9ca3af;
+    --text-h: #f3f4f6;
+    --bg: #16171d;
+    --border: #2e303a;
+    --code-bg: #1f2028;
+    --accent: #c084fc;
+    --accent-bg: rgba(192, 132, 252, 0.15);
+    --accent-border: rgba(192, 132, 252, 0.5);
+    --social-bg: rgba(47, 48, 58, 0.5);
+    --shadow:
+      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+  }
+
+  #social .button-icon {
+    filter: invert(1) brightness(2);
+  }
+}
+
+body{
+    background: radial-gradient(circle at 25% 25%, #2a2e3d 0%, #15161a 60%, #0d0e11 100%);
+    color:white;
+    font-family: "Inter", sans-serif;
+    margin: 0;
+    width: 100vw;
+}
+
+#root {
+  width: 100%;
+  max-width: 1126px;
+  margin: 0 auto;
+  text-align: center;
+  border-inline: 1px solid var(--border);
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+h1,
+h2 {
+  font-family: var(--heading);
+  font-weight: 500;
+  color: whitesmoke;
+}
+
+h1 {
+  font-size: 56px;
+  letter-spacing: -1.68px;
+  margin: 32px 0;
+  @media (max-width: 1024px) {
+    font-size: 36px;
+    margin: 20px 0;
+  }
+}
+h2 {
+  font-size: 24px;
+  line-height: 118%;
+  letter-spacing: -0.24px;
+  margin: 0 0 8px;
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
+}
+p {
+  margin: 0;
+}
+
+code,
+.counter {
+  font-family: var(--mono);
+  display: inline-flex;
+  border-radius: 4px;
+  color: var(--text-h);
+}
+
+code {
+  font-size: 15px;
+  line-height: 135%;
+  padding: 4px 8px;
+  background: var(--code-bg);
+}
+
+#header { 
+  display: flex; 
+  justify-content: space-evenly; 
+  align-items: center; 
+  padding: .625rem; 
+  min-height: 15rem; 
+  width: 100%; 
+  max-width: 100%; 
+  box-sizing: border-box;
+  background-size: cover;       /* Cuts edges instead of leaking out */
+  background-position: center;  
+  background-repeat: no-repeat;
+  overflow: hidden; 
+  
+  perspective: 1000px;
+  transform: rotateX(12deg) scale(1.02); /* Tilts the header for that dimensional look */
+  transform-origin: bottom center;
+  
+  /* 2. Deep 3D Drop Shadow underneath the header */
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.8),
+    0 35px 60px -15px rgba(0, 0, 0, 0.9);
+
+     /* 3. The Dark Overlay (Linear Gradient combined with a Vignette) */
+  /* This darkens the edges and dissolves the bottom into your page color */
+  background-image: 
+    linear-gradient(to bottom, rgba(18,20,29,0.3), rgba(18,20,29,1)), 
+    radial-gradient(circle, transparent, rgba(18,20,29,0.5)), 
+    var(--bg-img);
+
+  
+}
+
+
+  #watchlist, #watchlistContainer{
+    display: flex;
+    justify-content: center;
+    margin-top:  3.75em;
+    flex-direction: column;
+    align-items: center;
+    color:#787878;
+    padding-top: 3.125rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.25rem;
+  }
+
+  .add-to-watchlist, .movie-meta{
+    font-size:  0.75rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 2.625rem;
+    font-weight: 900;
+  }
+
+  h3 {
+    font-size: 1.125rem ;
+    line-height: 1.25rem ;
+    font-weight: 500 ;
+  }
+
+  .rating {
+    font-size: 0.75rem !important;
+    line-height: 1.25rem !important;
+    font-weight: 400 !important;
+  }
+
+  .empty{
+    color:#787878;
+    font-size: 1.125rem !important;
+    font-weight: 700;
+    line-height: 1.25em;
+}
+
+.plot{
+  font-size:0.875rem;
+  font-weight: 400;
+  line-height: 1.25em;
+  color: #A5A5A5;
+}
+  
+  #watchlist-btn {
+   all:unset;
+   font-size: .875rem ;
+   font-weight: 700 ;
+   line-height: .25em ;
+  }
+
+  .search-container {
+    display: flex;
+    justify-content: center;
+    margin:   2rem;
+  
+  }
+  
+  .search-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: #2e2e2e;
+    border-radius: 12px;
+    overflow: hidden;
+    width: 80vw;
+    margin: 0;
+  }
+  
+  .search-icon {
+    padding: 0 .75rem;
+    font-size: 1.25rem;
+    color: #bdbdbd;
+    margin:0;
+  }
+  
+  #search-bar {
+    width: 80vw;
+    border-top-left-radius:  5px;
+    border-bottom-left-radius: 5px;
+    background-color: #2E2E2F;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    padding: .875rem .625rem;
+    outline: none;
+    margin:0;
+  }
+  
+  #search-btn {
+    margin: 0;
+    background-color: #555;
+    color: white;
+    border: none;
+    padding: .875em 2.75em;
+    cursor: pointer;
+    font-size: 1rem;
+    height: 100%;
+    transition: background 0.2s ease-in-out;
+  }
+  
+  #search-btn:hover {
+    background-color: #666;
+  }
+
+
+  .watchlist-img{
+   min-width: 9.375rem;
+   height: auto;
+   margin-top: 1.25rem;
+  
+  }
+
+#movieListContainer {
+  display: flex;
+  flex-direction: column;   /* Stacks the movies vertically */
+  align-items: center;      /* Centers every movie row horizontally */
+  width: 100%;             /* Spans the full available space */
+  margin: 0 auto;           /* Guarantees the list is physically centered */
+  padding: 1rem 0;          /* Adds breathing room on the top and bottom */
+}
+
+  
+  .movie {
+    display: flex;
+    gap: 16px;
+    background-color: black;
+    color: white;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    width:75vw;
+    border-bottom: 1px solid #2C2C2C;
+    
+  }
+  
+  .movie img {
+    border-radius: 4px;
+    width: 8.1875rem;
+    height: 11.1875rem;
+  }
+  
+  .movie-info {
+    flex: 1;
+  }
+  
+  .movie-meta {
+    display: flex;
+    align-items: center;
+    gap: .625rem; /* space between runtime, genre, and button */
+    margin-bottom: 8px;
+  }
+  
+.watchlist-btn:hover, .remove-from-watchlist:hover, .add-to-watchlist:hover {
+    background-color: #222;
+}
+
+.plus-icon, .minus-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    color: black;
+    font-size: 1.125em;
+    font-weight: bold;
+    width: 1.25em;
+    height: 1.25em;
+    border-radius: 50%;
+}
+a{
+    all:unset;
+}
+
+.watchlist-btn, .remove-from-watchlist, .add-to-watchlist{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #111;
+    color: white;
+    border: none;
+    padding: .5em 1em;
+    border-radius: 3.125rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  
+}
+.read-more {
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+
