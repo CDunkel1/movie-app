@@ -6,6 +6,7 @@ import Watchlist from './components/Watchlist';
 import MovieList from './components/MovieList';
 import { fetchMoviesBySearch } from './services/movieApi'; // 👈 1. Import your API service
 import './App.css';
+import Hero from './components/Hero';
 
 // src/App.jsx
 // ... keep your imports the same ...
@@ -48,6 +49,7 @@ function App() {
           <Watchlist onToggleView={handleToggleView} />
         ) : (
           <>
+            <Hero /> 
             <SearchBar onSearch={handleSearchSubmit} />
             
             {/* 👇 UPDATE THIS LINE: Pass the new function as a prop */}

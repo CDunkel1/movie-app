@@ -88,7 +88,7 @@ code {
   background: var(--code-bg);
 }
 
-#header { 
+#hero-section { 
   display: flex; 
   justify-content: space-evenly; 
   align-items: center; 
@@ -118,11 +118,84 @@ code {
     radial-gradient(circle, transparent, rgba(18,20,29,0.5)), 
     var(--bg-img);
 }
- .header-card{
-  background-color: black;
-  padding: 60px;
+/* 🌟 THE WORKING ISOLATED HERO LAYER */
+#hero-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+  min-height: 15rem;
+  width: 100%;
+  box-sizing: border-box;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  
+  /* Retains your beautiful 3D tilt effects */
+  perspective: 1000px;
+  transform: rotateX(12deg) scale(1.02);
+  transform-origin: bottom center;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+  
+  /* 🟢 Uses the variable we passed from your Hero.jsx component file */
+  background-image: 
+    linear-gradient(to bottom, rgba(18, 20, 29, 0.1), rgba(18, 20, 29, 1)), 
+    radial-gradient(circle, transparent, rgba(18, 20, 29, 0.5)), 
+    var(--bg-img);
+}
+
+/* 🟢 STYLING FOR THE FLOATING GLASS BOX WITH EXTRA CLARITY */
+.hero-card {
+  /* Changed from rgba(0, 0, 0, 0.65) to a much lighter, sheer tint */
+  background-color: rgba(10, 11, 15, 0.25); 
+  
+  /* Retains the premium glass effect while making it ultra-clear */
+  backdrop-filter: blur(6px);            
+  -webkit-backdrop-filter: blur(6px); /* Safari support */
+  
+  /* Adds a highly reflective, fine edge border that mimics real glass */
+  border: 1px solid rgba(255, 255, 255, 0.12); 
+  
+  /* Keep your layout pads and shapes the same */
+  padding: 2.5rem 3.5rem;
   border-radius: 20px;
- }
+  
+  /* Adds a deep ambient shadow behind the glass to make the clear box stand out */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); 
+}
+
+
+.hero-card h1 {
+  margin: 0;
+  font-size: 3rem;
+  font-weight: 900;
+  letter-spacing: -1.5px;
+
+  /* 🌟 UPDATED: TOP-TO-BOTTOM DIRECTION WITH MAXIMUM LIME VISIBILITY 🌟 */
+  background: linear-gradient(to bottom, 
+    #2dd4bf 0%,    /* Crisp teal right at the top edge */
+    #10b981 30%,   /* Smooth emerald transit slice */
+    #ccff23 75%,   /* 🟢 Brings the bright lime green in much earlier */
+    #ccff23 100%   /* Drenches the entire base of the text in solid neon lime */
+  );
+  
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.6)); /* Slightly deeper shadow for contrast */
+}
+
+
+
+.hero-subtitle {
+  font-size: 1rem;
+  color: #a5a5a5;
+  margin: 8px 0 0 0;
+  font-weight: 400;
+}
+
 
   #watchlist, #watchlistContainer{
     display: flex;
@@ -154,6 +227,109 @@ code {
     line-height: 1.25rem ;
     font-weight: 500 ;
   }
+
+
+  /* GLOBAL TRANSITIONAL NAVBAR CONTAINER */
+.global-navbar {
+  display: flex;
+  justify-content: space-between; /* Pushes Logo to Left, Links to Center, Profile to Right */
+  align-items: center;
+  padding: 0.75rem 3rem;
+  background-color: #050608;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* BRAND LOGO TINTS */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+.lime-text {
+  color: #ccff23;
+}
+
+/* MENU ANCHOR LINKS WRAPPER */
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2.5rem;
+  margin: 0;
+  padding: 0;
+}
+.nav-links li {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  position: relative;
+  transition: color 0.15s ease;
+}
+.nav-links li:hover, .nav-links .active-link {
+  color: #ccff23;
+}
+
+/* SLICK HORIZONTAL NAVIGATION RED DECAL UNDERLINE */
+.nav-links .active-link::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 10%;
+  width: 80%;
+  height: 2.5px;
+  background-color: #ccff23;
+  border-radius: 4px;
+}
+
+/* DYNAMIC GRADIENT AVATAR BLOCK ELEMENT */
+.nav-profile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+/* 🌟 UPDATED: HIGH-TECH LIME & EMERALD GREEN GRADIENT AVATAR 🌟 */
+.avatar-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  
+  /* 🟢 Smooth transition from emerald green into your bright neon lime-green */
+  background: linear-gradient(135deg, #0f766e 0%, #10b981 40%, #ccff23 100%);
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  /* 🟢 Adds an atmospheric ambient green neon aura glow beneath the bubble */
+  box-shadow: 0 4px 14px rgba(204, 255, 35, 0.25); 
+  transition: all 0.2s ease-in-out;
+}
+
+/* Adds a quick interactive highlight effect when hovering over the profile area */
+.nav-profile:hover .avatar-circle {
+  transform: scale(1.05);
+  box-shadow: 0 4px 18px rgba(204, 255, 35, 0.4);
+}
+
+.user-icon {
+  color: #ffffff;
+  font-size: 0.95rem;
+}
+.chevron-icon {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.65rem;
+  transform: rotate(180deg);
+  font-weight: bold;
+}
+
 
   .rating {
     font-size: 0.75rem !important;
