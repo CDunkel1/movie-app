@@ -456,7 +456,7 @@ code {
   display: grid;
   
   /* 🌟 CHANGED: Increased minmax from 180px to 220px to force the grid columns to render larger */
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
   
   gap: 28px;                     /* Slightly wider gaps to balance out the larger card sizing */
   width: 100%;
@@ -467,32 +467,49 @@ code {
 }
 
 /* 🃏 2. THE WEBPAGE 3D FLOATING MOVIE CARD TILE */
+/* 🃏 THE PREMIUM 3D ACRYLIC GLASS MOVIE CARD TILE */
 .movie {
   display: flex;
   flex-direction: column;         
-  background-color: #15161b;      /* Sleek dark charcoal surface */
+  position: relative;
+  
+  /* 🌟 THE GLASSMORPHISM MIX 🌟 */
+  background: rgba(255, 255, 255, 0.03) !important; /* Sheer, ultra-thin white tint backdrop */
+  backdrop-filter: blur(16px);                      /* 🟢 Premium frosted acrylic blur layer */
+  -webkit-backdrop-filter: blur(16px);              /* Safari support catch-all */
+  
+  /* A sharp, semi-transparent border edge that catches ambient lighting */
+  border: 1px solid rgba(255, 255, 255, 0.06) !important; 
   border-radius: 24px;            
-  padding: 14px;                 /* Slightly elevated padding frame depth */
+  padding: 14px;                 
   margin: 0 !important;           
   width: auto !important;         
-  border-bottom: none !important; 
   text-align: left;
+  box-sizing: border-box;
   
-  /* 🛠️ Subtle structural outer 3D shadowing and lighting layer effects */
+  /* 🛠️ Subtle deep 3D structural outer shadowing */
   box-shadow: 
     inset 0 1px 0 rgba(255, 255, 255, 0.05), /* Fine reflection rim on the upper frame */
-    0 12px 30px rgba(0, 0, 0, 0.5);         /* Rich ambient drop shadow depth model */
+    0 16px 35px rgba(0, 0, 0, 0.4);         /* Rich ambient backdrop dark drop shadow */
   
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.25s ease, 
+              background-color 0.25s ease;
 }
 
-/* Smooth interactive micro-animation feedback response on card cards hover */
+/* Smooth interactive micro-animation feedback response on card hover */
 .movie:hover {
-  transform: translateY(-6px) scale(1.03); /* Elevated lifting pop animation for desktop interactions */
+  transform: translateY(-6px) scale(1.02); 
+  
+  /* Brightens the glass slightly when the cursor tracks over the tile */
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  
   box-shadow: 
-    inset 0 1px 0 rgba(255, 255, 255, 0.12),
-    0 20px 40px rgba(0, 0, 0, 0.65);        /* Deepens shadow map on cursor tracking lift */
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    0 24px 45px rgba(0, 0, 0, 0.6);        
 }
+
 
 /* 🖼️ 3. THE WEBSITE ASPECT POSTER COMPONENT */
 .movie img {
