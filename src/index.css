@@ -147,6 +147,7 @@ code {
 
 /* 🟢 STYLING FOR THE FLOATING GLASS BOX WITH EXTRA CLARITY */
 .hero-card {
+  min-width: 50vw;
   /* Changed from rgba(0, 0, 0, 0.65) to a much lighter, sheer tint */
   background-color: rgba(10, 11, 15, 0.25); 
   
@@ -450,27 +451,171 @@ code {
   
   }
 
-#movieListContainer {
-  display: flex;
-  flex-direction: column;   /* Stacks the movies vertically */
-  align-items: center;      /* Centers every movie row horizontally */
-  width: 100%;             /* Spans the full available space */
-  margin: 0 auto;           /* Guarantees the list is physically centered */
-  padding: 1rem 0;          /* Adds breathing room on the top and bottom */
+/* 🎬 1. THE RESPONSIVE AUTO-FLUID GRID BASE */
+#movieListContainer, #watchlistContainer {
+  display: grid;
+  
+  /* 🌟 THE CORE WEBPAGE GRID MAGIC 🌟 */
+  /* This automatically fills row spaces with as many 180px cards as can physically fit, scaling up flawlessly */
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); 
+  
+  gap: 24px;                     /* Wider layout gutters for expansive desktop monitors */
+  width: 100%;
+  max-width: 1200px;             /* 🟢 Hard cap so it looks incredibly premium and neat on large displays */
+  margin: 0 auto;
+  padding: 0 2rem 5rem 2rem;     /* Spacious outer padding boundaries */
+  box-sizing: border-box;
 }
 
+/* 🃏 2. THE WEBPAGE 3D FLOATING MOVIE CARD TILE */
+.movie {
+  display: flex;
+  flex-direction: column;         
+  background-color: #15161b;      /* Sleek dark charcoal surface */
+  border-radius: 24px;            
+  padding: 14px;                 /* Slightly elevated padding frame depth */
+  margin: 0 !important;           
+  width: auto !important;         
+  border-bottom: none !important; 
+  text-align: left;
   
-  .movie {
-    display: flex;
-    gap: 16px;
-    background-color: black;
-    color: white;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    width:75vw;
-    border-bottom: 1px solid #2C2C2C;
-    
-  }
+  /* 🛠️ Subtle structural outer 3D shadowing and lighting layer effects */
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.05), /* Fine reflection rim on the upper frame */
+    0 12px 30px rgba(0, 0, 0, 0.5);         /* Rich ambient drop shadow depth model */
+  
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease;
+}
+
+/* Smooth interactive micro-animation feedback response on card cards hover */
+.movie:hover {
+  transform: translateY(-6px) scale(1.03); /* Elevated lifting pop animation for desktop interactions */
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 20px 40px rgba(0, 0, 0, 0.65);        /* Deepens shadow map on cursor tracking lift */
+}
+
+/* 🖼️ 3. THE WEBSITE ASPECT POSTER COMPONENT */
+.movie img {
+  width: 100% !important;
+  height: 260px !important;       /* 🟢 Elevated poster height scaling beautifully within website grids */
+  object-fit: cover;              
+  border-radius: 18px;            
+  margin-bottom: 14px;
+}
+
+/* 📝 4. TYPOGRAPHY CONTENT LAYERS */
+.movie-info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;                  /* Forces interior layout cells to track equal heights */
+  padding: 0 4px;
+}
+
+/* Movie Title Target */
+.movie-info h3 {
+  font-size: 1rem;               /* Enhanced title proportions for computer text tracking */
+  font-weight: 700;
+  margin: 0 0 4px 0;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;        
+}
+
+/* Meta Data Line (Genre & Year labels combo text) */
+.movie-meta {
+  font-size: 0.8rem;
+  color: #8e8f99;                  
+  font-weight: 500;
+  margin: 0 0 10px 0;
+  display: flex;
+  gap: 6px;
+}
+
+/* ⭐ 5. RATING CONTAINER OVERRIDE */
+.rating {
+  display: inline-flex !important;
+  color: #ccff23 !important;      
+  font-size: 0.85rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.5px;            
+  margin-top: auto;               /* Safely locks scores rows parallel along bottom floors */
+  padding-bottom: 6px;
+}
+
+/* 🟢 THE PERMANENTLY GLOWING INTERACTIVE PILL BUTTON */
+.add-to-watchlist-btn {
+  width: 100%;
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  box-sizing: border-box;
+
+  /* 🛠️ DARK CYBERPUNK CHASSIS REFACTOR */
+  background: rgba(204, 255, 35, 0.05) !important; /* Low-opacity glowing interior body tint */
+  color: #8e8f99 !important;                       /* Bright neon lime text from the start! */
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 11px 16px;
+  border-radius: 14px !important;
+  
+  /* Solid neon green borders acting as the glowing rim */
+  border: 1px solid rgba(204, 255, 35, 0.4) !important;
+  
+  /* 🌟 THE PERSISTENT INACTIVE MULTI-STAGE GLOW STACK 🌟 */
+  box-shadow: 
+    0 0 6px rgba(204, 255, 35, 0.4),   /* Sharp inner neon light source */
+    0 0 15px rgba(204, 255, 35, 0.2),  /* Middle radiant atmospheric body aura */
+    0 0 30px rgba(204, 255, 35, 0.1),  /* Outward environmental light wash */
+    inset 0 1px 0 rgba(255, 255, 255, 0.05); /* Reflection rim on the upper frame */
+  
+  transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* 🌟 HOVER INVERSION STATE */
+.add-to-watchlist-btn:hover {
+  background: #ccff23 !important;      /* Floods the box into a solid lime neon block */
+  color: #050608 !important;            /* Flips font color immediately to dark contrast ink */
+  border-color: transparent !important;
+  
+  /* Elevates the glow brightness to react cleanly to mouse pointer tracking */
+  box-shadow: 
+    0 0 12px rgba(204, 255, 35, 0.7),   
+    0 0 30px rgba(204, 255, 35, 0.4),  
+    0 4px 15px rgba(0, 0, 0, 0.5);      /* Drop shadow anchor */
+  
+  transform: translateY(-2px);
+}
+
+/* 🟢 PHYSICAL 3D PRESS DOWN CLICK ANIMATION */
+.add-to-watchlist-btn:active {
+  transform: translateY(0.5px);
+  box-shadow: 
+    0 0 10px rgba(204, 255, 35, 0.4),
+    inset 0 2px 4px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* 🔄 INTERNAL ELEMENT ALIGNMENT (The tiny '+' circle symbol inside your code) */
+.add-to-watchlist-btn .plus-icon {
+  width: 1.4em;
+  height: 1.4em;
+  font-size: 0.9em;
+  background-color: rgba(204, 255, 35, 0.12); 
+  color: #ccff23;
+  transition: all 0.25s ease;
+}
+
+/* Flips the '+' emblem color theme synchronously with the parent card */
+.add-to-watchlist-btn:hover .plus-icon {
+  background-color: #050608; 
+  color: #ccff23;            
+}
+
+
   
   .movie img {
     border-radius: 4px;
