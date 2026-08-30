@@ -499,7 +499,7 @@ code {
   width: 100% !important;
   
   /* 🌟 CHANGED: Increased height from 260px to 320px to match the wider card structure perfectly */
-  height: 320px !important;       
+  height: 450px !important;       
   
   object-fit: cover;              
   border-radius: 18px;            
