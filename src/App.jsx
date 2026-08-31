@@ -4,12 +4,10 @@ import Navbar from './components/Navbar';
 import SearchBar from './components/SearchBar';
 import Watchlist from './components/Watchlist';
 import MovieList from './components/MovieList';
-import { fetchMoviesBySearch } from './services/movieApi'; // 👈 1. Import your API service
+import { fetchMoviesBySearch } from './services/movieApi';
 import './App.css';
 import Hero from './components/Hero';
-
-// src/App.jsx
-// ... keep your imports the same ...
+import MovieRow from './components/MovieRow';
 
 function App() {
   const [showWatchlist, setShowWatchlist] = useState(false);
@@ -20,20 +18,19 @@ function App() {
   };
 
   const handleSearchSubmit = async (query) => {
+    // If the user clears the search bar or submits an empty string, reset movies to show the rows again
+    if (!query.trim()) {
+      setMovies([]);
+      return;
+    }
     const results = await fetchMoviesBySearch(query);
-    setMovies(results); 
+    setMovies(results);
   };
 
-  // 👇 ADD THIS NEW FUNCTION HERE
   const handleAddToWatchlist = (movie) => {
-    // 1. Get current watchlist from localStorage, fallback to empty array if empty
     const currentWatchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
-    
-    // 2. Check if the movie is already in the watchlist to avoid duplicates
     if (!currentWatchlist.includes(movie.imdbID)) {
       const updatedWatchlist = [...currentWatchlist, movie.imdbID];
-      
-      // 3. Save back to localStorage
       localStorage.setItem("watchlist", JSON.stringify(updatedWatchlist));
       alert(`${movie.Title} added to your watchlist!`);
     } else {
@@ -49,11 +46,25 @@ function App() {
           <Watchlist onToggleView={handleToggleView} />
         ) : (
           <>
-            <Hero /> 
+            <Hero />
             <SearchBar onSearch={handleSearchSubmit} />
             
-            {/* 👇 UPDATE THIS LINE: Pass the new function as a prop */}
-            <MovieList movies={movies} onAddToWatchlist={handleAddToWatchlist} /> 
+            {/* 🟢 CONDITIONAL RENDERING SWITCH */}
+            {movies && movies.length > 0 ? (
+              /* VIEW A: Show search results when movies array has data */
+              <div className="search-results-wrapper">
+                <h2 className="search-results-heading">Search Results</h2>
+                <MovieList movies={movies} onAddToWatchlist={handleAddToWatchlist} />
+              </div>
+            ) : (
+              /* VIEW B: Default home view with curated rows when no search active */
+              <div className="homepage-rows">
+  <MovieRow title="Featured Blockbusters" fetchQuery="avengers" onAddToWatchlist={handleAddToWatchlist} />
+  <MovieRow title="Action & Adventure" fetchQuery="batman" onAddToWatchlist={handleAddToWatchlist} />
+  <MovieRow title="Heartfelt & Comedies" fetchQuery="love" onAddToWatchlist={handleAddToWatchlist} />
+</div>
+
+            )}
           </>
         )}
       </main>

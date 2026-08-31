@@ -167,7 +167,7 @@ code {
   flex: 1;
   display: flex;
   align-self: stretch; /* 🟢 Forces this wrapper to fill the full height of the parent flexbox */
-  
+
 }
 
 /* Style the image to perfectly flush against the card borders */
@@ -521,9 +521,7 @@ code {
 /* 🖼️ 3. THE WEBSITE ASPECT POSTER COMPONENT */
 .movie img {
   width: 100% !important;
-  
-  /* 🌟 CHANGED: Increased height from 260px to 320px to match the wider card structure perfectly */
-  height: 450px !important;       
+  height: 260px !important;       
   
   object-fit: cover;              
   border-radius: 18px;            
@@ -700,3 +698,270 @@ a{
 }
 
 
+/* movie row csss*/
+/* Container for spacing out rows */
+.homepage-rows {
+  padding: 2rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  overflow: visible !important;
+}
+.movie-row-container {
+  position: relative;
+  overflow: visible !important; /* 🟢 Allows child cards to burst out of boundaries */
+  z-index: 1;
+}
+
+
+.row-title {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  letter-spacing: 0.5px;
+}
+
+/* 🟢 Crucial: Creates the horizontal overflow scroll lane */
+.movie-row-scrollbar {
+  display: flex;
+  gap: 3.5rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  scroll-behavior: smooth;
+  overflow-x: auto !important; /* 🟢 Forces horizontal scrolling back on */
+  overflow-y: hidden;   
+  width: 100%;
+  /* 🟢 THE BREAKOUT MAGIC: Create internal headroom and pull the layout tight */
+  padding: 25px 10px;  /* Adds 25px of empty safety space inside the top and bottom */
+  margin: -25px -10px; /* Pulls the row back into position so it doesn't look spaced out */
+  
+  scroll-behavior: smooth;
+  align-items: flex-start; 
+}
+/* Ensure the scrollbar doesn't hover strangely due to the new padding padding */
+.movie-row-scrollbar::-webkit-scrollbar {
+  height: 4px;
+}
+.movie-row-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+
+
+
+/* Individual small poster card dimensions */
+.row-movie-card {
+  flex: 0 0 auto; /* Prevents cards from squishing down to fit container width */
+  width: 180px;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.row-movie-card:hover {
+  transform: scale(1.05); /* Sleek Netflix-style hover grow effect */
+}
+
+.row-movie-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+}
+
+/* Dark hover overlay text text to read title details */
+.row-card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+  padding: 1rem;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.row-movie-card:hover .row-card-overlay {
+  opacity: 1;
+}
+
+.row-card-overlay h3 {
+  font-size: 0.9rem;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+/* movie Card css*/
+/* ==========================================================================
+   DYNAMIC POP-OUT MOVIE CARD STYLING RULES
+   ========================================================================== */
+/* ==========================================================================
+   UPDATED MOVIE CARD SYSTEM - WITH IMAGE HIDDEN ON HOVER
+   ========================================================================== */
+/* ==========================================================================
+   CLEAN OVERLAY MOVIE CARD SYSTEM - OVERFLOW SAFE
+   ========================================================================== */
+
+/* 1. Track layout remains identical to your grid proportions */
+.movie-card-track {
+  width: 180px;
+  height: 260px;
+  position: relative;
+}
+
+/* 2. Core Card Frame */
+.universal-movie-card {
+  width: 180px;
+  height: 260px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 12px;
+  background-color: #16171d;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  overflow: hidden; /* 🟢 Safe container clipping fallback */
+  
+  /* Micro scaling grow effect stays safely within bounds */
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  z-index: 1;
+}
+
+/* Subtle, responsive scale liftoff on hover */
+.movie-card-track:hover .universal-movie-card {
+  transform: translateY(-4px) scale(1.03); 
+  border-color: #4ade80; /* Theme lime green glow edge highlight */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
+  z-index: 10;
+}
+
+/* Base image adjustments */
+.card-poster-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+/* 🟢 THE IMAGE SWITCH: Softly dissolves the background poster asset on hover */
+.movie-card-track:hover .card-poster-img {
+  opacity: 0.15; /* Leaves a faint movie backdrop watermark behind your text */
+}
+
+/* 3. 🟢 THE FIXED GLASS TEXT CARD LAYER */
+.card-hover-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  
+  /* Elegant, readable solid charcoal glass workspace surface layer */
+  background: rgba(22, 23, 29, 0.95);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Pushes content to the top and buttons to the bottom */
+  
+  /* Hidden by default */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+/* Smoothly displays details block on interaction bounds */
+.movie-card-track:hover .card-hover-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 4. Scrollable Multi-line Text Formatting */
+.overlay-top-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  overflow: hidden; /* Stops title spilling leaks */
+}
+
+.overlay-title {
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Keeps long single lines tidy */
+}
+
+.overlay-year-time {
+  color: #4ade80;
+  font-size: 0.725rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.overlay-genres {
+  color: #9ca3af;
+  font-size: 0.675rem;
+  line-height: 1.3;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 🟢 THE SCROLLABLE DESCRIPTION PANELS FIX */
+.overlay-plot-full {
+  color: #d1d5db;
+  font-size: 0.675rem;
+  line-height: 1.45;
+  margin-top: 0.4rem;
+  margin-bottom: 0;
+  white-space: normal;
+  
+  /* Fits the description container into a scroll pane inside the card block */
+  max-height: 110px;
+  overflow-y: auto; 
+  padding-right: 0.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 0.4rem;
+}
+
+/* Clean up internal text scrollbar rendering sizes */
+.overlay-plot-full::-webkit-scrollbar {
+  width: 4px;
+}
+.overlay-plot-full::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+
+/* 5. Watchlist Button Core Placement Alignment */
+.overlay-watchlist-btn {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  padding: 0.45rem;
+  border-radius: 6px;
+  font-size: 0.725rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  align-self: flex-end;
+}
+
+.overlay-watchlist-btn:hover {
+  background: #4ade80;
+  color: #0b0c10;
+  border-color: #4ade80;
+}
