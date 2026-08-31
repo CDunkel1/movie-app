@@ -88,44 +88,15 @@ code {
   background: var(--code-bg);
 }
 
-#hero-section { 
-  display: flex; 
-  justify-content: space-evenly; 
-  align-items: center; 
-  padding: .625rem; 
-  min-height: 15rem; 
-  width: 100%; 
-  max-width: 100%; 
-  box-sizing: border-box;
-  background-size: cover;       /* Cuts edges instead of leaking out */
-  background-position: center;  
-  background-repeat: no-repeat;
-  overflow: hidden; 
-  
-  perspective: 1000px;
-  transform: rotateX(12deg) scale(1.02); /* Tilts the header for that dimensional look */
-  transform-origin: bottom center;
-  
-  /* 2. Deep 3D Drop Shadow underneath the header */
-  box-shadow: 
-    0 25px 50px -12px rgba(0, 0, 0, 0.8),
-    0 35px 60px -15px rgba(0, 0, 0, 0.9);
 
-     /* 3. The Dark Overlay (Linear Gradient combined with a Vignette) */
-  /* This darkens the edges and dissolves the bottom into your page color */
-  background-image: 
-    linear-gradient(to bottom, rgba(18,20,29,0.3), rgba(18,20,29,1)), 
-    radial-gradient(circle, transparent, rgba(18,20,29,0.5)), 
-    var(--bg-img);
-}
 /* 🌟 THE WORKING ISOLATED HERO LAYER */
 #hero-section {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 2rem 1rem;
-  min-height: 15rem;
-  width: 100%;
+  min-height: 80vh;
+  padding: 80px;
   box-sizing: border-box;
   background-size: cover;
   background-position: center;
@@ -146,46 +117,82 @@ code {
 }
 
 /* 🟢 STYLING FOR THE FLOATING GLASS BOX WITH EXTRA CLARITY */
-.hero-card {
-  min-width: 50vw;
-  /* Changed from rgba(0, 0, 0, 0.65) to a much lighter, sheer tint */
-  background-color: rgba(10, 11, 15, 0.25); 
-  
-  /* Retains the premium glass effect while making it ultra-clear */
-  backdrop-filter: blur(6px);            
-  -webkit-backdrop-filter: blur(6px); /* Safari support */
-  
-  /* Adds a highly reflective, fine edge border that mimics real glass */
-  border: 1px solid rgba(255, 255, 255, 0.12); 
-  
-  /* Keep your layout pads and shapes the same */
-  padding: 2.5rem 3.5rem;
-  border-radius: 20px;
-  
-  /* Adds a deep ambient shadow behind the glass to make the clear box stand out */
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); 
+/* The glass container wrapping both text and image */
+/* The main glass card container */
+.hero-content-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px rgba(255, 255, 255, 0.1) solid;
+  border-radius: 16px;
+  /* 🟢 Crucial: Keep padding everywhere EXCEPT the right side */
+  padding: 2.5rem 0 2.5rem 2.5rem; 
+  margin: 0 auto;
+  overflow: hidden; /* 🟢 Prevents the image corners from breaking the card's border-radius */
 }
 
-
-.hero-card h1 {
-  margin: 0;
-  font-size: 3rem;
-  font-weight: 900;
-  letter-spacing: -1.5px;
-
-  /* 🌟 UPDATED: TOP-TO-BOTTOM DIRECTION WITH MAXIMUM LIME VISIBILITY 🌟 */
-  background: linear-gradient(to bottom, 
-    #2dd4bf 0%,    /* Crisp teal right at the top edge */
-    #10b981 30%,   /* Smooth emerald transit slice */
-    #ccff23 75%,   /* 🟢 Brings the bright lime green in much earlier */
-    #ccff23 100%   /* Drenches the entire base of the text in solid neon lime */
-  );
+/* Left text side remains unchanged */
+.hero-text-side {
+  flex: 1;
+  text-align: center;
+  padding-right: 2.5rem; /* Re-adds padding for mobile when stacked vertically */
+  padding-left: 2.5rem;
+}
+.hero-text-side h1 {
+  /* 1. Define your gradient colors (running from top to bottom) */
+  background-image: linear-gradient(to bottom, #4ade80, #a3e635);
   
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  /* 2. Clip the background gradient so it only outlines the letters */
   background-clip: text;
+  -webkit-background-clip: text; /* Required for Safari/Chrome support */
   
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.6)); /* Slightly deeper shadow for contrast */
+  /* 3. Make the base text fill invisible so the gradient underneath shines through */
+  color: transparent;
+  -webkit-text-fill-color: transparent; /* Extra safety for cross-browser rendering */
+
+  /* Optional: Make it bold and impactful */
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+
+}
+
+/* Right image container */
+.hero-image-side {
+  flex: 1;
+  display: flex;
+  align-self: stretch; /* 🟢 Forces this wrapper to fill the full height of the parent flexbox */
+  
+}
+
+/* Style the image to perfectly flush against the card borders */
+.hero-featured-img {
+  width: 100%;
+  height: 100%; /* 🟢 Instructs the image to use 100% of the stretched height */
+  object-fit: cover; /* 🟢 Ensures the movie poster is cropped beautifully without distortion */
+
+  /* Matches the card's outer right border radius */
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+/* Responsive side-by-side layout for desktops */
+@media (min-width: 768px) {
+  .hero-content-card {
+    flex-direction: row;
+    padding: 0 0 0 2.5rem; /* 🟢 Completely removes top/bottom/right padding on desktop layout */
+    height: 350px; /* 🎛️ Option: Set a fixed card height so the image looks consistently premium */
+  }
+  
+  .hero-text-side {
+    text-align: left;
+    padding-right: 0; /* Clear desktop mobile padding */
+  }
 }
 
 
