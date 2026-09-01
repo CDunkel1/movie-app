@@ -1,6 +1,7 @@
 // src/components/Watchlist.jsx
 import { useState, useEffect } from 'react';
 import { fetchMovieById } from '../services/movieApi';
+import MovieCard from './MovieCard'; 
 
 export default function Watchlist({ onToggleView }) {
   // 1. Initialize state by reading directly from LocalStorage
@@ -68,48 +69,18 @@ export default function Watchlist({ onToggleView }) {
   }
 
   return (
-    <div id="watchlistContainer">
+       <div id="watchlistContainer" className="watchlist-results-wrap">
       {movies.map(movie => (
-        <div className="movie" key={movie.imdbID}>
-          <img 
-            src={movie.Poster !== 'N/A' ? movie.Poster : 'https://via.placeholder.com/150'} 
-            alt={movie.Title} 
-          />
-          <div className="movie-info">
-            <h3>{movie.Title} <span className="rating">⭐ {movie.imdbRating}</span></h3>
-            <div className="movie-meta">
-              <span className="runtime">{movie.Runtime}</span>
-              <span className="genre">{movie.Genre}</span>
-              <button className="remove-from-watchlist" onClick={() => handleRemove(movie.imdbID)}>
-                <span className="minus-icon"> - </span> Remove From Watchlist
-              </button>
-            </div>
-            <MoviePlot fullPlot={movie.Plot || ""} />
-          </div>
-        </div>
+        /* 🟢 Reusing the premium card asset with removal control flags passed down */
+        <MovieCard 
+          key={movie.imdbID} 
+          movie={movie} 
+          onAddToWatchlist={handleRemove} 
+          isWatchlistPage={true} 
+        />
       ))}
     </div>
   );
 }
 
-// ─── HELPER MINI-COMPONENT FOR INDEPENDENT READ MORE TOGGLING ───
-function MoviePlot({ fullPlot }) {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const shouldTruncate = fullPlot.length > 135;
-  const shortPlot = shouldTruncate ? fullPlot.substring(0, 135) + "..." : fullPlot;
 
-  return (
-    <p className="plot">
-      {isExpanded ? fullPlot : shortPlot} 
-      {shouldTruncate && (
-        <button 
-          className="read-more-btn" 
-          style={{ background: 'none', border: 'none', color: '#3b82f6', cursor: 'pointer', paddingLeft: '5px' }}
-          onClick={() => setIsExpanded(!isExpanded)}
-        >
-          {isExpanded ? "Show Less" : "Read More"}
-        </button>
-      )}
-    </p>
-  );
-}

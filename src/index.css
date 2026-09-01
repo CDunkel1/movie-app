@@ -557,19 +557,10 @@ code {
   gap: 6px;
 }
 
-/* ⭐ 5. RATING CONTAINER OVERRIDE */
-.rating {
-  display: inline-flex !important;
-  color: #ccff23 !important;      
-  font-size: 0.85rem !important;
-  font-weight: 700 !important;
-  letter-spacing: 1.5px;            
-  margin-top: auto;               /* Safely locks scores rows parallel along bottom floors */
-  padding-bottom: 6px;
-}
+
 
 /* 🟢 THE PERMANENTLY GLOWING INTERACTIVE PILL BUTTON */
-.add-to-watchlist-btn {
+.add-to-watchlist-btn,  .remove-from-watchlist {
   width: 100%;
   margin-top: 12px;
   display: flex;
@@ -601,7 +592,7 @@ code {
 }
 
 /* 🌟 HOVER INVERSION STATE */
-.add-to-watchlist-btn:hover {
+.add-to-watchlist-btn:hover,.remove-from-watchlist:hover {
   background: #ccff23 !important;      /* Floods the box into a solid lime neon block */
   color: #050608 !important;            /* Flips font color immediately to dark contrast ink */
   border-color: transparent !important;
@@ -616,7 +607,7 @@ code {
 }
 
 /* 🟢 PHYSICAL 3D PRESS DOWN CLICK ANIMATION */
-.add-to-watchlist-btn:active {
+.add-to-watchlist-btn:active, .remove-from-watchlist:active {
   transform: translateY(0.5px);
   box-shadow: 
     0 0 10px rgba(204, 255, 35, 0.4),
@@ -624,73 +615,23 @@ code {
 }
 
 /* 🔄 INTERNAL ELEMENT ALIGNMENT (The tiny '+' circle symbol inside your code) */
-.add-to-watchlist-btn .plus-icon {
+.add-to-watchlist-btn .plus-icon, .remove-from-watchlist .minus-icon  {
   width: 1.4em;
   height: 1.4em;
   font-size: 0.9em;
-  background-color: rgba(204, 255, 35, 0.12); 
-  color: #ccff23;
+  color: #8e8f99;
   transition: all 0.25s ease;
 }
 
 /* Flips the '+' emblem color theme synchronously with the parent card */
-.add-to-watchlist-btn:hover .plus-icon {
-  background-color: #050608; 
-  color: #ccff23;            
-}
-
-
-  
-  .movie img {
-    border-radius: 4px;
-    width: 8.1875rem;
-    height: 11.1875rem;
-  }
-  
-  .movie-info {
-    flex: 1;
-  }
-  
-  .movie-meta {
-    display: flex;
-    align-items: center;
-    gap: .625rem; /* space between runtime, genre, and button */
-    margin-bottom: 8px;
-  }
-  
-.watchlist-btn:hover, .remove-from-watchlist:hover, .add-to-watchlist:hover {
-    background-color: #222;
-}
-
-.plus-icon, .minus-icon{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    color: black;
-    font-size: 1.125em;
-    font-weight: bold;
-    width: 1.25em;
-    height: 1.25em;
-    border-radius: 50%;
+.add-to-watchlist-btn:hover .plus-icon, .remove-from-watchlist:hover .minus-icon {
+  color: black;            
 }
 a{
     all:unset;
 }
 
-.watchlist-btn, .remove-from-watchlist, .add-to-watchlist{
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background-color: #111;
-    color: white;
-    border: none;
-    padding: .5em 1em;
-    border-radius: 3.125rem;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  
-}
+
 .read-more {
   color: white;
   cursor: pointer;
@@ -713,7 +654,6 @@ a{
   z-index: 1;
 }
 
-
 .row-title {
   color: #ffffff;
   font-size: 1.5rem;
@@ -722,20 +662,17 @@ a{
   letter-spacing: 0.5px;
 }
 
-/* 🟢 Crucial: Creates the horizontal overflow scroll lane */
 .movie-row-scrollbar {
   display: flex;
   gap: 3.5rem;
   overflow-x: auto;
   padding-bottom: 1rem;
   scroll-behavior: smooth;
-  overflow-x: auto !important; /* 🟢 Forces horizontal scrolling back on */
-  overflow-y: hidden;   
+  overflow-x: auto;
+  overflow-y: visible !important;
   width: 100%;
-  /* 🟢 THE BREAKOUT MAGIC: Create internal headroom and pull the layout tight */
-  padding: 25px 10px;  /* Adds 25px of empty safety space inside the top and bottom */
-  margin: -25px -10px; /* Pulls the row back into position so it doesn't look spaced out */
-  
+  padding: 25px 10px;
+  margin: -25px -10px; 
   scroll-behavior: smooth;
   align-items: flex-start; 
 }
@@ -747,8 +684,6 @@ a{
   background: rgba(255, 255, 255, 0.2);
   border-radius: 10px;
 }
-
-
 
 /* Individual small poster card dimensions */
 .row-movie-card {
@@ -801,12 +736,7 @@ a{
 /* ==========================================================================
    DYNAMIC POP-OUT MOVIE CARD STYLING RULES
    ========================================================================== */
-/* ==========================================================================
-   UPDATED MOVIE CARD SYSTEM - WITH IMAGE HIDDEN ON HOVER
-   ========================================================================== */
-/* ==========================================================================
-   CLEAN OVERLAY MOVIE CARD SYSTEM - OVERFLOW SAFE
-   ========================================================================== */
+
 
 /* 1. Track layout remains identical to your grid proportions */
 .movie-card-track {
@@ -826,7 +756,7 @@ a{
   background-color: #16171d;
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  overflow: hidden; /* 🟢 Safe container clipping fallback */
+  overflow: hidden; 
   
   /* Micro scaling grow effect stays safely within bounds */
   transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
@@ -836,7 +766,7 @@ a{
 /* Subtle, responsive scale liftoff on hover */
 .movie-card-track:hover .universal-movie-card {
   transform: translateY(-4px) scale(1.03); 
-  border-color: #4ade80; /* Theme lime green glow edge highlight */
+  border-color: #ccff23; 
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
   z-index: 10;
 }
@@ -851,12 +781,11 @@ a{
   transition: opacity 0.2s ease;
 }
 
-/* 🟢 THE IMAGE SWITCH: Softly dissolves the background poster asset on hover */
+/* THE IMAGE SWITCH: Softly dissolves the background poster asset on hover */
 .movie-card-track:hover .card-poster-img {
-  opacity: 0.15; /* Leaves a faint movie backdrop watermark behind your text */
+  opacity: 0.15; 
 }
 
-/* 3. 🟢 THE FIXED GLASS TEXT CARD LAYER */
 .card-hover-overlay {
   position: absolute;
   top: 0;
@@ -903,7 +832,7 @@ a{
 }
 
 .overlay-year-time {
-  color: #4ade80;
+  color: #ccff23;
   font-size: 0.725rem;
   font-weight: 600;
   margin: 0;
@@ -945,23 +874,19 @@ a{
   border-radius: 4px;
 }
 
-/* 5. Watchlist Button Core Placement Alignment */
-.overlay-watchlist-btn {
+#watchlistContainer {
+  display: flex;
+  flex-wrap: wrap;             /* Let's watchlist items break to secondary rows */
+  gap:1.5rem;          /* Extra vertical gap so card layouts feel airy */
   width: 100%;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #ffffff;
-  padding: 0.45rem;
-  border-radius: 6px;
-  font-size: 0.725rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  align-self: flex-end;
+  padding: 4rem;
+  justify-content: center;     
+  align-items: flex-start;
+  height: 160px;
+
 }
 
-.overlay-watchlist-btn:hover {
-  background: #4ade80;
-  color: #0b0c10;
-  border-color: #4ade80;
-}
+
+
+
+
