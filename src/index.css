@@ -743,6 +743,7 @@ a{
   width: 180px;
   height: 260px;
   position: relative;
+  flex: 0 0 auto;
 }
 
 /* 2. Core Card Frame */
@@ -765,18 +766,25 @@ a{
 
 /* Subtle, responsive scale liftoff on hover */
 .movie-card-track:hover .universal-movie-card {
-  transform: translateY(-4px) scale(1.03); 
-  border-color: #ccff23; 
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
-  z-index: 10;
+  width: 260px;          /* 1. Widens the card so the text rows look wide and clean */
+  height: max-content;   /* 2. Dynamically snaps to the exact height of the incoming text */
+  min-height: 260px;     /* 3. Guarantees it never shrinks smaller than the default card */
+  left: -40px;           /* 4. Centers the expanding width evenly on both sides */
+  transform: translateY(-8px); 
+  background-color: #141414; 
+  border-color: #ccff2381; 
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.85);
+  overflow: visible;     /* Unlocks clipping barriers */
+  z-index: 99999;  
 }
 
 /* Base image adjustments */
 .card-poster-img {
   width: 100%;
-  height: 100%;
+  height: 260px;
   object-fit: cover;
-  display: block;
+   border-top-left-radius: 11px;
+  border-top-right-radius: 11px;
   opacity: 1;
   transition: opacity 0.2s ease;
 }
@@ -848,21 +856,16 @@ a{
   text-overflow: ellipsis;
 }
 
-/* 🟢 THE SCROLLABLE DESCRIPTION PANELS FIX */
 .overlay-plot-full {
   color: #d1d5db;
-  font-size: 0.675rem;
-  line-height: 1.45;
-  margin-top: 0.4rem;
-  margin-bottom: 0;
+  font-size: 0.725rem;
+  line-height: 1.5;
+  margin: 0;
   white-space: normal;
-  
-  /* Fits the description container into a scroll pane inside the card block */
-  max-height: 110px;
-  overflow-y: auto; 
-  padding-right: 0.25rem;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
-  padding-top: 0.4rem;
+  padding-top: 0.6rem;
+  max-height: none !important; 
+  overflow-y: visible !important; 
 }
 
 /* Clean up internal text scrollbar rendering sizes */
