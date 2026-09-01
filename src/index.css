@@ -875,8 +875,8 @@ a{
 }
 
 #watchlistContainer {
-  display: flex;
-  flex-wrap: wrap;             /* Let's watchlist items break to secondary rows */
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);             /* Let's watchlist items break to secondary rows */
   gap:1.5rem;          /* Extra vertical gap so card layouts feel airy */
   width: 100%;
   padding: 4rem;
