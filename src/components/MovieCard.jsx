@@ -1,10 +1,11 @@
 // src/components/MovieCard.jsx
 import { useState } from 'react';
+import MovieModal from './MovieModal'; // 🟢 Import your premium new modal
 
 export default function MovieCard({ movie, onAddToWatchlist, isWatchlistPage }) {
   const [details, setDetails] = useState({ runtime: '', genre: '', plot: '' });
   const [fetched, setFetched] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(false); // 🟢 Track if text is collapsed or expanded
+  const [isModalOpen, setIsModalOpen] = useState(false); // 🟢 Track modal trigger state
 
   const handleMouseEnter = async () => {
     if (fetched) return; 
@@ -27,76 +28,65 @@ export default function MovieCard({ movie, onAddToWatchlist, isWatchlistPage }) 
     }
   };
 
-  // 🟢 THE TEXT TRUNCATE ENGINE
   const fullPlot = details.plot || movie.Plot || 'Loading story synopsis...';
-  const shouldTruncate = fullPlot.length > 440;
+  const shouldTruncate = fullPlot.length > 340;
   
-  // Truncates at 140 characters and attaches "..." if it's too long and not expanded
-  const displayedPlot = (shouldTruncate && !isExpanded) 
-    ? fullPlot.substring(0, 440) + "..." 
-    : fullPlot;
+  // 🟢 HOVER CARD ALWAYS STAYS SHORT: Strict layout cap formatting
+  const displayedPlot = shouldTruncate ? fullPlot.substring(0, 340) + "..." : fullPlot;
 
   return (
-    <div 
-      className="movie-card-track" 
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={() => setIsExpanded(false)} // 🟢 Automatically collapses the text when mouse leaves the card
-    >
-      <div className="universal-movie-card">
-        <img 
-          src={movie.Poster !== 'N/A' ? movie.Poster : 'https://placeholder.com'} 
-          alt={movie.Title} 
-          className="card-poster-img" 
-        />
+    <>
+      <div 
+        className="movie-card-track" 
+        onMouseEnter={handleMouseEnter}
+        /* 🟢 Open the cinematic full screen modal on whole track element clicks */
+        onClick={() => setIsModalOpen(true)} 
+        style={{ cursor: 'pointer' }}
+      >
+        <div className="universal-movie-card">
+          <img 
+            src={movie.Poster !== 'N/A' ? movie.Poster : 'https://placeholder.com'} 
+            alt={movie.Title} 
+            className="card-poster-img" 
+          />
 
-        <div className="card-hover-overlay">
-          <div className="overlay-top-info">
-            <h3 className="overlay-title">{movie.Title}</h3>
-            <p className="overlay-year-time">{movie.Year} • {details.runtime || movie.Runtime || 'Loading...'}</p>
-            <p className="overlay-genres">{details.genre || movie.Genre || 'Fetching categories...'}</p>
-            
-            {/* 🟢 DYNAMIC PLOT FIELD */}
-            <p className="overlay-plot-full">
-              {displayedPlot}
+          <div className="card-hover-overlay">
+            <div className="overlay-top-info">
+              <h3 className="overlay-title">{movie.Title}</h3>
+              <p className="overlay-year-time">{movie.Year} • {details.runtime || movie.Runtime || 'Loading...'}</p>
+              <p className="overlay-genres">{details.genre || movie.Genre || 'Loading categories...'}</p>
               
-              {/* Render the toggle link text inline only if the character threshold is breached */}
-              {shouldTruncate && (
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation(); // Stops click from triggering lower structural events
-                    setIsExpanded(!isExpanded);
-                  }}
-                  className="read-more-toggle-btn"
-                >
-                  {isExpanded ? ' Show Less' : ' Read More'}
-                </button>
-              )}
-            </p>
+              <p className="overlay-plot-full">
+                {displayedPlot}
+                {shouldTruncate && <span className="modal-more-hint-link"> More Details</span>}
+              </p>
+            </div>
+            
+            <button 
+              className={isWatchlistPage ? "remove-from-watchlist" : "add-to-watchlist-btn"}
+              onClick={(e) => {
+                e.stopPropagation(); // 🟢 Stops button click from accidentally popping open the modal!
+                if (isWatchlistPage) {
+                  onAddToWatchlist(movie.imdbID);
+                } else {
+                  onAddToWatchlist(movie);
+                }
+              }}
+            >
+              {isWatchlistPage ? <><span className="minus-icon">-</span> Watchlist</> : <><span className="plus-icon">+</span> Add to Watchlist</>}
+            </button>
           </div>
-          
-          <button 
-            className={isWatchlistPage ? "remove-from-watchlist" : "add-to-watchlist-btn"}
-            onClick={(e) => {
-              e.stopPropagation();
-              if (isWatchlistPage) {
-                onAddToWatchlist(movie.imdbID);
-              } else {
-                onAddToWatchlist(movie);
-              }
-            }}
-          >
-            {isWatchlistPage ? (
-              <>
-                <span className="minus-icon">-</span> Watchlist
-              </>
-            ) : (
-              <>
-                <span className="plus-icon">+</span> Add to Watchlist
-              </>
-            )}
-          </button>
         </div>
       </div>
-    </div>
+
+      {/* 🟢 MOUNT CINEMATIC POPUP OVERLAY */}
+      {isModalOpen && (
+        <MovieModal 
+          movie={movie} 
+          details={details} 
+          onClose={() => setIsModalOpen(false)} 
+        />
+      )}
+    </>
   );
 }

@@ -711,3 +711,177 @@ DEFAULT GRID FALLBACKS (Search Results Frame)
   padding: 1rem 1rem 1.5rem 1rem !important;
   border-radius: 11px !important;
 }
+
+
+
+/* ==========================================================================
+   CINEMATIC FULL SCREEN MOVIE MODAL DESIGN SYSTEM (FIXED FLOW)
+   ========================================================================== */
+
+.modal-backdrop-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(5, 6, 8, 0.85); 
+  backdrop-filter: blur(8px); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999999 !important; 
+  animation: modalFadeIn 0.2s ease-out;
+}
+
+.premium-movie-modal {
+  position: relative;
+  background-color: #14151a;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  width: 90%;
+  max-width: 800px;
+  
+  /* 🟢 FIXED DIMENSION ANCHORS: Prevents structural warping on long text loads */
+  height: 480px !important;
+  max-height: 85vh; 
+  
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 40px rgba(204, 255, 35, 0.05);
+  overflow: hidden;
+  animation: modalSlideUp 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background: rgba(5, 6, 8, 0.6);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-size: 1.5rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: all 0.2s ease;
+}
+.modal-close-btn:hover {
+  background-color: #ccff23;
+  color: #050608;
+  border-color: #ccff23;
+}
+
+.modal-grid-layout {
+  display: flex;
+  width: 100%;
+  height: 100%; /* Fully occupies the 480px modal height footprint */
+}
+
+/* Left Side Poster Panel */
+.modal-left-poster {
+  flex: 0 0 35%; /* Keeps the image lane locked at exactly 35% track width */
+  height: 100%;
+  background-color: #0b0c10;
+  overflow: hidden;
+}
+
+.modal-left-poster img {
+  width: 100%;
+  height: 100%;
+  
+  /* 🟢 THE IMAGE FORMATTING FIX: forces the poster to crop elegantly 
+     without any squeeze warping regardless of dimensions */
+  object-fit: cover !important; 
+  display: block;
+}
+
+/* Right Side Text Content Panel */
+.modal-right-content {
+  flex: 1;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  text-align: left;
+  height: 100%;
+  box-sizing: border-box;
+  
+  /* 🟢 THE TEXT CONTAINER SCROLL FIX: Allows the content column itself to unroll 
+     a smooth interior vertical scroll track path if descriptions are extremely long,
+     ensuring the synopsis text is never cut off or cropped at the bottom! */
+  overflow-y: auto !important; 
+}
+
+/* Custom Scrollbar Styles for the Right Modal Content */
+.modal-right-content::-webkit-scrollbar {
+  width: 6px;
+}
+.modal-right-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+.modal-right-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+.modal-right-content::-webkit-scrollbar-thumb:hover {
+  background: #ccff23;
+}
+
+.modal-movie-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.modal-metadata-row {
+  display: flex;
+  gap: 1rem;
+}
+.modal-year-pill, .modal-runtime-pill {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ccff23; 
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.modal-genres-text { 
+  color: #9ca3af; 
+  font-size: 0.9rem; 
+}
+
+.modal-plot-scroll-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.modal-plot-scroll-box h3 {
+  font-size: 1.1rem;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.modal-plot-scroll-box p {
+  color: #d1d5db;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.modal-more-hint-link {
+  color: #3b82f6;
+  font-weight: 700;
+  font-size: 0.65rem;
+  margin-left: 4px;
+}
+
+@keyframes modalFadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes modalSlideUp { from { transform: scale(0.95) translateY(20px); opacity: 0; } to { transform: scale(1) translateY(0); opacity: 1; } }
