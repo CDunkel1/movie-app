@@ -11,10 +11,14 @@ export default function MovieList({ movies, onAddToWatchlist }) {
   }
 
   return (
-    /* Keep your existing ID wrapper for overall page structure alignment */
-    <div id="movieListContainer" className="search-results-grid"> 
+  /* 🟢 THE UNIQUE ROOT WRAPPER: Avoid using .homepage-rows here! */
+  <div className="search-view-layout-page">
+    
+    
+
+    {/* 2. COMPLETELY ISOLATED INDEPENDENT SIBLING GRID LIST CONTAINER */}
+    <div id="movieListContainer" className="search-results-grid">
       {movies.map((movie) => (
-        /* 🟢 Swap out the old div layout with the universal card */
         <MovieCard 
           key={movie.imdbID} 
           movie={movie} 
@@ -22,6 +26,7 @@ export default function MovieList({ movies, onAddToWatchlist }) {
         />
       ))}
     </div>
-  );
-}
 
+  </div>
+);
+}
