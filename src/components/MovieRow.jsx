@@ -1,6 +1,6 @@
 // src/components/MovieRow.jsx
 import { useState, useEffect } from 'react';
-import MovieCard from './MovieCard'; // 🟢 Import our shared card
+import MovieCard from './MovieCard'; // 🟢 Fully utilized now!
 
 export default function MovieRow({ title, fetchQuery, onAddToWatchlist }) {
   const [movies, setMovies] = useState([]);
@@ -15,7 +15,8 @@ export default function MovieRow({ title, fetchQuery, onAddToWatchlist }) {
         const data = await response.json();
         
         if (data.Search) {
-          setMovies(data.Search.slice(0, 6));
+          // 🟢 Keeps exactly 5 cards visible across the screen layout natively
+          setMovies(data.Search.slice(0, 8)); 
         }
       } catch (error) {
         console.error(`Failed rows for ${title}:`, error);
@@ -31,13 +32,16 @@ export default function MovieRow({ title, fetchQuery, onAddToWatchlist }) {
   return (
     <div className="movie-row-container">
       <h2 className="row-title">{title}</h2>
+      
+      {/* 🟢 The horizontal scrolling runner lane */}
       <div className="movie-row-scrollbar">
         {movies.map((movie) => (
-          /* 🟢 Render the shared universal card component */
+          /* 🟢 Render the universal shared component file cleanly */
           <MovieCard 
             key={movie.imdbID} 
             movie={movie} 
             onAddToWatchlist={onAddToWatchlist} 
+            isWatchlistPage={false} /* Tells the card it is on the landing page row views */
           />
         ))}
       </div>

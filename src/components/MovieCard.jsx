@@ -2,9 +2,9 @@
 import { useState } from 'react';
 
 export default function MovieCard({ movie, onAddToWatchlist, isWatchlistPage }) {
-  // 🟢 Declare 'plot' inside initial state channel so React tracks it instantly
   const [details, setDetails] = useState({ runtime: '', genre: '', plot: '' });
   const [fetched, setFetched] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false); // 🟢 Track if text is collapsed or expanded
 
   const handleMouseEnter = async () => {
     if (fetched) return; 
@@ -27,8 +27,21 @@ export default function MovieCard({ movie, onAddToWatchlist, isWatchlistPage }) 
     }
   };
 
+  // 🟢 THE TEXT TRUNCATE ENGINE
+  const fullPlot = details.plot || movie.Plot || 'Loading story synopsis...';
+  const shouldTruncate = fullPlot.length > 440;
+  
+  // Truncates at 140 characters and attaches "..." if it's too long and not expanded
+  const displayedPlot = (shouldTruncate && !isExpanded) 
+    ? fullPlot.substring(0, 440) + "..." 
+    : fullPlot;
+
   return (
-    <div className="movie-card-track" onMouseEnter={handleMouseEnter}>
+    <div 
+      className="movie-card-track" 
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={() => setIsExpanded(false)} // 🟢 Automatically collapses the text when mouse leaves the card
+    >
       <div className="universal-movie-card">
         <img 
           src={movie.Poster !== 'N/A' ? movie.Poster : 'https://placeholder.com'} 
@@ -39,18 +52,32 @@ export default function MovieCard({ movie, onAddToWatchlist, isWatchlistPage }) 
         <div className="card-hover-overlay">
           <div className="overlay-top-info">
             <h3 className="overlay-title">{movie.Title}</h3>
-            <p className="overlay-year-time">{movie.Year} • {details.runtime || 'Loading...'}</p>
-            <p className="overlay-genres">{details.genre || 'Fetching categories...'}</p>
-            <p className="overlay-plot-full">{details.plot || 'Loading story synopsis...'}</p>
+            <p className="overlay-year-time">{movie.Year} • {details.runtime || movie.Runtime || 'Loading...'}</p>
+            <p className="overlay-genres">{details.genre || movie.Genre || 'Fetching categories...'}</p>
+            
+            {/* 🟢 DYNAMIC PLOT FIELD */}
+            <p className="overlay-plot-full">
+              {displayedPlot}
+              
+              {/* Render the toggle link text inline only if the character threshold is breached */}
+              {shouldTruncate && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation(); // Stops click from triggering lower structural events
+                    setIsExpanded(!isExpanded);
+                  }}
+                  className="read-more-toggle-btn"
+                >
+                  {isExpanded ? ' Show Less' : ' Read More'}
+                </button>
+              )}
+            </p>
           </div>
           
           <button 
             className={isWatchlistPage ? "remove-from-watchlist" : "add-to-watchlist-btn"}
             onClick={(e) => {
               e.stopPropagation();
-              
-              // 🟢 THE FIX: If it is the Watchlist page, pass just the string ID.
-              // If it is the home search grid, pass the whole movie object!
               if (isWatchlistPage) {
                 onAddToWatchlist(movie.imdbID);
               } else {
@@ -64,7 +91,7 @@ export default function MovieCard({ movie, onAddToWatchlist, isWatchlistPage }) 
               </>
             ) : (
               <>
-                <span className="plus-icon">+</span> Watchlist
+                <span className="plus-icon">+</span> Add to Watchlist
               </>
             )}
           </button>

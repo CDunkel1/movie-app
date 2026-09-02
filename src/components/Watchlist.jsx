@@ -1,35 +1,45 @@
 // src/components/Watchlist.jsx
 import { useState, useEffect } from 'react';
 import { fetchMovieById } from '../services/movieApi';
-import MovieCard from './MovieCard'; 
+import MovieCard from './MovieCard';
 
 export default function Watchlist({ onToggleView }) {
-  // 1. Initialize state by reading directly from LocalStorage
   const [watchlistIds, setWatchlistIds] = useState(() => {
     return JSON.parse(localStorage.getItem("watchlist")) || [];
   });
-  
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // 2. Fetch full movie details safely
+  // Fetch full movie details safely
   useEffect(() => {
-    if (watchlistIds.length === 0) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setMovies([]);
-      return;
-    }
-
-    let isMounted = true; // Prevents updating state if component unmounts mid-fetch
-
+    let isMounted = true; 
+    
     const loadMovieData = async () => {
+      // 🟢 FIXED: If the watchlist is completely empty, clear state safely INSIDE the async line flow 
+      if (watchlistIds.length === 0) {
+        if (isMounted) setMovies([]);
+        return;
+      }
+
       setLoading(true);
       try {
         const moviePromises = watchlistIds.map(id => fetchMovieById(id));
         const details = await Promise.all(moviePromises);
         
         if (isMounted) {
-          setMovies(details.filter(movie => movie !== null));
+          const normalizedMovies = details
+            .filter(movie => movie !== null)
+            .map(movie => ({
+              imdbID: movie.imdbID,
+              Title: movie.Title,
+              Poster: movie.Poster,
+              Year: movie.Year ? movie.Year.substring(0, 4) : 'N/A', 
+              Runtime: movie.Runtime,
+              Genre: movie.Genre,
+              Plot: movie.Plot
+            }));
+
+          setMovies(normalizedMovies);
         }
       } catch (error) {
         console.error("Error loading watchlist details:", error);
@@ -39,15 +49,15 @@ export default function Watchlist({ onToggleView }) {
         }
       }
     };
-
+    
     loadMovieData();
-
+    
     return () => {
-      isMounted = false; // Cleanup function to break the rendering loop chain
+      isMounted = false; 
     };
-  }, [watchlistIds]); // ✅ Controlled loop dependency
+  }, [watchlistIds]); // Triggers cleanly only when storage array modifications execute
 
-  // 3. Remove Item handler
+  // Remove Item handler
   const handleRemove = (id) => {
     const updatedIds = watchlistIds.filter(movieId => movieId !== id);
     setWatchlistIds(updatedIds);
@@ -69,9 +79,8 @@ export default function Watchlist({ onToggleView }) {
   }
 
   return (
-       <div id="watchlistContainer" className="watchlist-results-wrap">
+    <div id="watchlistContainer" className="watchlist-results-wrap">
       {movies.map(movie => (
-        /* 🟢 Reusing the premium card asset with removal control flags passed down */
         <MovieCard 
           key={movie.imdbID} 
           movie={movie} 
@@ -82,5 +91,3 @@ export default function Watchlist({ onToggleView }) {
     </div>
   );
 }
-
-

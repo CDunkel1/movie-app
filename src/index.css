@@ -1,4 +1,3 @@
-
 :root {
   @media (max-width: 1024px) {
     font-size: 16px;
@@ -218,7 +217,9 @@ code {
   }
 
 
-  /* GLOBAL TRANSITIONAL NAVBAR CONTAINER */ 
+/* ==========================================================================
+   GLOBAL TRANSITIONAL NAVBAR
+   ========================================================================== */
 .global-navbar { 
   display: flex; 
   justify-content: space-between; 
@@ -231,7 +232,6 @@ code {
   z-index: 100; 
 } 
 
-/* BRAND LOGO TINTS */ 
 .nav-logo { 
   display: flex; 
   align-items: center; 
@@ -246,7 +246,6 @@ code {
   color: #ccff23; 
 } 
 
-/* MENU ANCHOR LINKS WRAPPER */ 
 .nav-links { 
   display: flex; 
   list-style: none; 
@@ -268,7 +267,6 @@ code {
   color: #ccff23; 
 } 
 
-/* DYNAMIC GRADIENT AVATAR BLOCK ELEMENT */ 
 .nav-profile { 
   display: flex; 
   align-items: center; 
@@ -276,7 +274,6 @@ code {
   cursor: pointer; 
 }
 
-/* 🌟 UPDATED: HIGH-TECH LIME & EMERALD GREEN GRADIENT AVATAR 🌟 */
 .avatar-circle {
   width: 36px;
   height: 36px;
@@ -289,44 +286,17 @@ code {
   transition: all 0.2s ease-in-out;
 }
 
-/* Adds a quick interactive highlight effect when hovering over the profile area */
 .nav-profile:hover .avatar-circle {
   transform: scale(1.05);
   box-shadow: 0 4px 18px rgba(204, 255, 35, 0.4);
 }
 
-.user-icon {
-  color: #ffffff;
-  font-size: 0.95rem;
-}
-.chevron-icon {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.65rem;
-  transform: rotate(180deg);
-  font-weight: bold;
-}
+.user-icon { color: #ffffff; font-size: 0.95rem; }
+.chevron-icon { color: rgba(255, 255, 255, 0.6); font-size: 0.65rem; transform: rotate(180deg); font-weight: bold; }
 
-.empty{
-    color:#787878;
-    font-size: 1.125rem !important;
-    font-weight: 700;
-    line-height: 1.25em;
-}
-
-.plot{
-  font-size:0.875rem;
-  font-weight: 400;
-  line-height: 1.25em;
-  color: #A5A5A5;
-}
-
-#watchlist-btn {
-   all:unset;
-   font-size: .875rem ;
-   font-weight: 700 ;
-   line-height: .25em ;
-  }
-
+/* ==========================================================================
+   HOMEPAGE SEARCH SEARCH SYSTEM
+   ========================================================================== */
 .search-container {
   display: flex;
   justify-content: center;
@@ -334,11 +304,8 @@ code {
   width: 90%;                  
   max-width: 570px;            
   margin: 3.5rem auto 4.5rem auto; 
-  padding: 0;
-  box-sizing: border-box;
 }
 
- /* THE MAIN CAPSULE CONTAINER */
 .search-wrapper {
   display: flex;
   align-items: center;
@@ -353,7 +320,6 @@ code {
   min-height: 3.2rem; 
 }
 
-/* ⌨️ TRANSPARENT INPUT CORE */
 #search-bar {
   flex: 1;
   background-color: transparent !important;
@@ -362,10 +328,8 @@ code {
   font-size: 1rem;
   padding: 0.85rem 0;
   outline: none !important;
-  box-sizing: border-box;
 }
 
-/* LIME 3D INTERACTIVE BUTTON */
 #search-btn {
   margin: 0;
   border: none !important;
@@ -376,225 +340,47 @@ code {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-sizing: border-box;
   background-color: #ccff23 !important; 
   color: #08060d !important;            
   font-weight: 700;
   font-size: 1rem;
   box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.4),  
-              inset 0 -3px 0 rgba(0, 0, 0, 0.25),      
-              -2px 0 10px rgba(0, 0, 0, 0.2);          
-              
-  transform: translateY(0);
+              inset 0 -3px 0 rgba(0, 0, 0, 0.25);          
   transition: all 0.1s ease-in-out;
 }
 
 #search-btn:hover {
-  background-color: #d8ff47 !important; /* Subtle glow shift */
-  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.5),
-              inset 0 -4px 0 rgba(0, 0, 0, 0.3);
+  background-color: #d8ff47 !important;
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.5), inset 0 -4px 0 rgba(0, 0, 0, 0.3);
 }
 
-/* 🟢PHYSICAL 3D CLICK CLICK CLICK */
 #search-btn:active {
   background-color: #ccff23 !important;
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.4) !important; 
 }
 
-.watchlist-img{
-   min-width: 9.375rem;
-   height: auto;
-   margin-top: 1.25rem;
-  
-  }
-
-/*THE RESPONSIVE AUTO-FLUID GRID BASE */
-#movieListContainer, #watchlistContainer {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
-  gap: 28px;                     
-  max-width: 1240px;             
-  margin: 0 auto;
-  padding: 0 2rem 5rem 2rem;     
-  box-sizing: border-box;
-}
-
-
-/*THE 3D ACRYLIC GLASS MOVIE CARD TILE */
-.movie {
-  display: flex;
-  flex-direction: column;         
-  position: relative;
-  /* THE GLASSMORPHISM MIX */
-  background: rgba(255, 255, 255, 0.03) !important; 
-  backdrop-filter: blur(16px);                      
-  -webkit-backdrop-filter: blur(16px);              
-  border: 1px solid rgba(255, 255, 255, 0.06) !important; 
-  border-radius: 24px;            
-  padding: 14px;                 
-  margin: 0 !important;           
-  width: auto !important;         
-  text-align: left;
-  box-sizing: border-box;
-  box-shadow: 
-    inset 0 1px 0 rgba(255, 255, 255, 0.05), 
-    0 16px 35px rgba(0, 0, 0, 0.4);        
-  
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
-              box-shadow 0.25s ease, 
-              background-color 0.25s ease;
-}
-
-/* Smooth interactive micro-animation feedback response on card hover */
-.movie:hover {
-  transform: translateY(-6px) scale(1.02); 
-  /* Brightens the glass slightly when the cursor tracks over the tile */
-  background-color: rgba(255, 255, 255, 0.06) !important;
-  border-color: rgba(255, 255, 255, 0.12) !important;
-  box-shadow: 
-    inset 0 1px 0 rgba(255, 255, 255, 0.15),
-    0 24px 45px rgba(0, 0, 0, 0.6);        
-}
-
-/*THE WEBSITE ASPECT POSTER COMPONENT */
-.movie img {
-  width: 100% !important;
-  height: 260px !important;       
-  
-  object-fit: cover;              
-  border-radius: 18px;            
-  margin-bottom: 14px;
-}
-
-/*TYPOGRAPHY CONTENT LAYERS */
-.movie-info {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;                  
-  padding: 0 4px;
-}
-
-/* Movie Title Target */
-.movie-info h3 {
-  font-size: 1.1rem;             
-  font-weight: 700;
-  margin: 0 0 4px 0;
-  color: #ffffff;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;        
-}
-
-/* Meta Data Line (Genre & Year labels combo text) */
-.movie-meta {
-  font-size: 0.8rem;
-  color: #8e8f99;                  
-  font-weight: 500;
-  margin: 0 0 10px 0;
-  display: flex;
-  gap: 6px;
-}
-
-
-
-/* 🟢 THE PERMANENTLY GLOWING INTERACTIVE PILL BUTTON */
-.add-to-watchlist-btn,  .remove-from-watchlist {
-  width: 100%;
-  margin-top: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  cursor: pointer;
-  box-sizing: border-box;
-
-  /* 🛠️ DARK CYBERPUNK CHASSIS REFACTOR */
-  background: rgba(204, 255, 35, 0.05) !important; 
-  color: #8e8f99 !important;                       
-  font-weight: 700;
-  font-size: 0.8rem;
-  padding: 11px 16px;
-  border-radius: 14px !important;
-  /* Solid neon green borders acting as the glowing rim */
-  border: 1px solid rgba(204, 255, 35, 0.4) !important;
-  box-shadow: 
-    0 0 6px rgba(204, 255, 35, 0.4),   
-    0 0 15px rgba(204, 255, 35, 0.2),  
-    0 0 30px rgba(204, 255, 35, 0.1),  
-    inset 0 1px 0 rgba(255, 255, 255, 0.05); 
-  
-  transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-/* 🌟 HOVER INVERSION STATE */
-.add-to-watchlist-btn:hover,.remove-from-watchlist:hover {
-  background: #ccff23 !important;      
-  color: #050608 !important;            
-  box-shadow: 
-    0 0 12px rgba(204, 255, 35, 0.7),   
-    0 0 30px rgba(204, 255, 35, 0.4),  
-    0 4px 15px rgba(0, 0, 0, 0.5);      
-  
-  transform: translateY(-2px);
-}
-
-/* 🟢 PHYSICAL 3D PRESS DOWN CLICK ANIMATION */
-.add-to-watchlist-btn:active, .remove-from-watchlist:active {
-  transform: translateY(0.5px);
-  box-shadow: 
-    0 0 10px rgba(204, 255, 35, 0.4),
-    inset 0 2px 4px rgba(0, 0, 0, 0.4) !important;
-}
-
-/* 🔄 INTERNAL ELEMENT ALIGNMENT (The tiny '+' circle symbol inside your code) */
-.add-to-watchlist-btn .plus-icon, .remove-from-watchlist .minus-icon  {
-  width: 1.4em;
-  height: 1.4em;
-  font-size: 0.9em;
-  color: #8e8f99;
-  transition: all 0.25s ease;
-}
-
-/* Flips the '+' emblem color theme synchronously with the parent card */
-.add-to-watchlist-btn:hover .plus-icon, .remove-from-watchlist:hover .minus-icon {
-  color: black;            
-}
-a{
-    all:unset;
-}
-
-
-.read-more {
-  color: white;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-
-/* movie row csss*/
-/* Container for spacing out rows */
+/* ==========================================================================
+   HOMEPAGE MOVIE ROWS (CLEAN FOCUS + SCROLLBAR HIDDEN)
+   ========================================================================== */
 .homepage-rows {
   padding: 2rem 4rem;
   display: flex;
   flex-direction: column;
-  gap: 5rem;
+  gap: 6rem; /* Keeps your chosen, balanced row distance */
   overflow: visible !important;
 }
-.movie-row-container {
+
+.movie-row-container  {
   position: relative;
-  overflow: visible !important; 
+  overflow: visible !important;
   z-index: 1;
 }
 
-.movie-row-scrollbar .movie-card-track:first-child:hover .universal-movie-card {
-  left: 0 !important;
+/* 🟢 THE LAYER SAFETY SHIELD: Raises the active row container when hovered 
+   so the rows below it can never steal your cursor focus or collapse cards! */
+.movie-row-container:hover {
+  z-index: 999;
 }
-
-.movie-row-scrollbar .movie-card-track:last-child:hover .universal-movie-card {
-  left: auto !important;
-  right: 0 !important;
-}
-
 
 .row-title {
   color: #ffffff;
@@ -602,132 +388,49 @@ a{
   font-weight: 600;
   margin-bottom: 1rem;
   letter-spacing: 0.5px;
+  text-align: left;
 }
 
 .movie-row-scrollbar {
   display: flex;
-  gap: 1.5rem;
-  overflow-x: auto;
-  padding-bottom: 1rem;
-  scroll-behavior: smooth;
-  overflow-x: auto !important;
-  overflow-y: visible !important;
-  width: 100%;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  margin: -25px -10px; 
-  scroll-behavior: smooth;
-  align-items: flex-start; 
-    min-height: 320px;
-}
-/* Ensure the scrollbar doesn't hover strangely due to the new padding padding */
-.movie-row-scrollbar::-webkit-scrollbar {
-  height: 4px;
-  display:block !important;
-}
-.movie-row-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
-}
-
-/* ==========================================================================
-   🟢 THE MAGIC 5-CARD VISIBLE SNAP FORMATTING (HOVER CORRECTION)
-   ========================================================================== */
-
-/* 1. Base Row Scrollbar Track Settings */
-.movie-row-scrollbar {
-  display: flex;
-  gap: 1.5rem;                  
+  gap: 2.5rem;                  
   overflow-x: auto !important;  
-  overflow-y: visible !important;  
+  overflow-y: visible !important; /* Vital headroom for cards to expand downward */
   width: 100%;
-  padding-bottom: 2rem; 
+  
+  /* 🟢 HEALTHY, BALANCED SAFETY HEADROOM: 
+     Gives your cards space to float upwards and expand downwards comfortably. 
+     Using minimal negative margins keeps the elements completely flat and centered! */
+  padding-top: 15px !important;
+  padding-bottom: 120px !important; 
+  margin-top: -15px !important;
+  margin-bottom: -120px !important;
+  
   scroll-behavior: smooth;
+  scrollbar-width: none; /* Hides Firefox scrollbars */
+  align-items: flex-start !important; 
 }
 
-/* 2. Base Static Card Track (Enforces 5 cards across screen width) */
+.movie-row-scrollbar::-webkit-scrollbar {
+  display: none !important; /* Hides Chrome/Safari scrollbars */
+}
+
+/* Enforces exactly 5 cards visible across the row */
 .movie-row-scrollbar .movie-card-track {
   height: 260px;
   position: relative;
   flex: 0 0 calc(20% - 1.2rem); 
   width: calc(20% - 1.2rem);
-  min-width: 160px; 
+  min-width: 160px;
 }
 
-/* 3. Base Internal Card Layout Rules */
-.movie-row-scrollbar .universal-movie-card {
-  width: 100%;
-  height: 260px;
-}
+/* Slick alignment corrections for cards sitting on the absolute outer screen margins */
+.movie-row-scrollbar .movie-card-track:first-child:hover .universal-movie-card { left: 0 !important; }
+.movie-row-scrollbar .movie-card-track:last-child:hover .universal-movie-card { left: auto !important; right: 0 !important; }
 
-.movie-row-scrollbar .movie-card-track:hover .universal-movie-card {
-  width: 260px;          
-  height: max-content;   
-  min-height: 300px;
-  left: calc((100% - 260px) / 2); 
-  transform: translateY(-8px);
-  background-color: #141414;
-  border-color: #ccff23;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.85);
-  z-index: 99999;        
-  overflow: visible;     
-}
-
-
-/* Individual small poster card dimensions */
-.row-movie-card {
-  flex: 0 0 auto; 
-  width: 180px;
-  position: relative;
-  border-radius: 8px;
-  overflow: hidden;
-  transition: transform 0.3s ease;
-  cursor: pointer;
-}
-
-.row-movie-card:hover {
-  transform: scale(1.05); /* Sleek Netflix-style hover grow effect */
-}
-
-.row-movie-card img {
-  width: 100%;
-  height: 260px;
-  object-fit: cover;
-}
-
-/* Dark hover overlay text text to read title details */
-.row-card-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-  padding: 1rem;
-  color: white;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.row-movie-card:hover .row-card-overlay {
-  opacity: 1;
-}
-
-.row-card-overlay h3 {
-  font-size: 0.9rem;
-  margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-
-/* movie Card css*/
 /* ==========================================================================
-   DYNAMIC POP-OUT MOVIE CARD STYLING RULES
+   UNIVERSAL CARD COMPONENTS & HOVER LIFTOFF SYSTEM
    ========================================================================== */
-
-
-/* 1. Track layout remains identical to your grid proportions */
 .movie-card-track {
   width: 180px;
   height: 260px;
@@ -735,177 +438,276 @@ a{
   flex: 0 0 auto;
 }
 
-/* 2. Core Card Frame */
 .universal-movie-card {
-  width: 180px;
+  width: 100%;
   height: 260px;
   position: absolute;
+  
+  /* 🟢 FIXED VISUAL ALIGNMENT: Snapping the card frame to top: 0 keeps 
+     the elements level, removing the uneven shifting across the row lane */
   top: 0;
   left: 0;
+  
   border-radius: 12px;
   background-color: #16171d;
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   overflow: hidden; 
-  
-  /* Micro scaling grow effect stays safely within bounds */
-  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, width 0.25s ease;
   z-index: 1;
 }
 
-/* Subtle, responsive scale liftoff on hover */
-/* ==========================================================================
-   GLOBAL MOVIE CARD LIFTOFF HOVER LAYER OVERRIDES
-   ========================================================================== */
-
+/* 🟢 CHASSIS GROW EXPANSION ON HOVER */
 .movie-card-track:hover .universal-movie-card {
-  width: 260px;          
-  height: max-content;   
-  min-height: 360px;     
-  
-  /* Centers the expanding layout center-point */
+  width: 260px;
+  height: max-content !important; /* Expands to fit long plots without scrollbars */
+  min-height: 360px;
   left: calc((100% - 260px) / 2); 
   transform: translateY(-8px);
+  background-color: #141414 !important;
   
-  background-color: #141414; 
-  border-color: #ccff23; /* Forces your signature green highlight outline visible */
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.95); /* Deep shadow elevates card dimensionally */
-  
-  /* 🟢 THE LAYER LAYER INSURANCE FIX:
-     Forces the expanding card, borders, and button elements to the 
-     absolute highest stack window layer on your browser screen! */
+  /* Glowing Cyberpunk neon lime rim lines */
+  border: 1px solid #ccff23 !important; 
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.95);
   z-index: 999999 !important; 
-  
-  /* 🟢 CRUCIAL: Must be set to visible so expanding boxes don't get cropped */
   overflow: visible !important; 
 }
 
-/* Base image adjustments */
 .card-poster-img {
   width: 100%;
   height: 260px;
   object-fit: cover;
-   border-top-left-radius: 11px;
+  display: block;
+  border-top-left-radius: 11px;
   border-top-right-radius: 11px;
   opacity: 1;
   transition: opacity 0.2s ease;
 }
-
-/* THE IMAGE SWITCH: Softly dissolves the background poster asset on hover */
 .movie-card-track:hover .card-poster-img {
-  opacity: 0.15; 
+  opacity: 0.15; /* Poster scales back to become an elegant background watermark */
 }
 
 /* ==========================================================================
-   DYNAMIC EDGE-TO-EDGE EXPANDING HOVER BLOCKS (NO BUTTON LEAKS)
+   INTERNAL GLASS OVERLAY MAPPING TEXT FIELDS
    ========================================================================== */
-
 .card-hover-overlay {
-  position: absolute;    
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  
-  /* 🟢 FIXED: Changed bottom: 0 to auto so the overlay container can 
-     grow taller to naturally enclose huge blocks of text and buttons! */
   bottom: auto; 
-  
-  /* 🟢 FORCE MINIMUM SURFACE: Guarantees the overlay is at least as tall as 
-     the standard card, but allows it to stretch down fluidly if plot text is massive */
   min-height: 100%;
   height: max-content;
-
-  background: rgba(20, 21, 26, 0.98); /* Deep solid backdrop for high text contrast */
-  padding: 1rem; /* Restored healthy padding margins to prevent edge mashing */
+  background: transparent !important; 
+  
+  /* 🟢 EXTRA BOTTOM PADDING SAFETY SHELF: 
+     Leaving 1.5rem of room at the bottom guarantees the button never overlaps 
+     or breaks your glowing neon green border loop lines! */
+  padding: 1rem 1rem 1.5rem 1rem !important; 
+  
   display: flex;
   flex-direction: column;
-  justify-content: space-between; 
+  justify-content: space-between;
   gap: 0.75rem;
   color: #ffffff;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.2s ease;
-  border-radius: 11px;
+  box-sizing: border-box !important;
 }
 
-/* Smoothly displays details block on interaction bounds */
 .movie-card-track:hover .card-hover-overlay {
   opacity: 1;
   pointer-events: auto;
 }
 
-/* 4. Scrollable Multi-line Text Formatting */
-.overlay-top-info {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  
-  /* 🟢 CHANGED: Switch from visible to hidden to prevent metadata leaks */
+.overlay-top-info { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 0.35rem; 
   overflow: hidden; 
+  text-align: left;
 }
 
-/* 🟢 TYPO FIX: Making sure your exact title selectors are targeted cleanly */
-.overlay-title {
+.overlay-title { 
   color: #ffffff !important; 
-  font-size: 0.95rem; /* Restored slightly larger text hierarchy for readability */
-  font-weight: 700;
-  display: block !important;
-  white-space: normal;
-  margin: 0 0 0.2rem 0;
+  font-size: 0.95rem; 
+  font-weight: 700; 
+  margin: 0 0 0.2rem 0; 
 }
 
-.overlay-year-time {
-  color: #ccff23;
-  font-size: 0.725rem; /* Standardized hierarchy size */
-  font-weight: 600;
-  margin: 0;
+.overlay-year-time { 
+  color: #ccff23; 
+  font-size: 0.725rem; 
+  font-weight: 600; 
+  margin: 0; 
 }
 
-.overlay-genres {
-  color: #9ca3af;
-  font-size: 0.675rem;
-  line-height: 1.3;
-  margin: 0;
-  
-  /* 🟢 FIXED: Kept text wrap clear and clean */
+.overlay-genres { 
+  color: #9ca3af; 
+  font-size: 0.675rem; 
+  line-height: 1.3; 
+  margin: 0; 
   white-space: normal; 
-  overflow: hidden;
 }
 
 .overlay-plot-full {
   color: #d1d5db;
   font-size: 0.675rem;
-  line-height: 1.45; /* Added spacing between text lines for comfortable reading */
+  line-height: 1.45;
   margin: 0;
   white-space: normal;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
-  padding-top: 0.5rem; /* Generates a breathing gap below the separator bar line */
-  max-height: none !important; 
-  overflow-y: visible !important; 
+  padding-top: 0.5rem;
+  max-height: none !important;
+  overflow-y: visible !important; /* No scrollbars on plots! */
 }
 
-/* Clean up internal text scrollbar rendering sizes */
-.overlay-plot-full::-webkit-scrollbar {
-  width: 4px;
-}
-.overlay-plot-full::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 4px;
+/* ==========================================================================
+   INLINE TYPOGRAPHY READ MORE BUTTON DECAL
+   ========================================================================== */
+.read-more-toggle-btn {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin-left: 6px !important;
+  display: inline !important;
+  font-size: 0.675rem !important;
+  font-weight: 700 !important;
+  color: #3b82f6 !important; /* Premium tech neon blue link tone */
+  cursor: pointer;
+  transition: color 0.15s ease;
 }
 
-#watchlistContainer {
+.read-more-toggle-btn:hover {
+  color: #ccff23 !important; /* Glows your signature lime color on cursor hover */
+  text-decoration: underline !important;
+  transform: none !important; /* Cancels any parent card 3D lift rules */
+}
+
+
+/* ==========================================================================
+CYBERPUNK NEON LIME BUTTON MECHANICS
+========================================================================== */
+.add-to-watchlist-btn, .remove-from-watchlist {
+  box-sizing: border-box !important;
+width: calc(100% - 8px) !important;
+margin-left: auto !important;
+margin-right: auto !important;
+margin-top: auto !important;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 8px;cursor: pointer;
+background: rgba(204, 255, 35, 0.05) !important;
+color: #8e8f99 !important;
+font-weight: 700;
+font-size: 0.75rem !important;
+padding: 8px 14px !important;
+border-radius: 10px !important;
+border: 1px solid rgba(204, 255, 35, 0.4) !important;
+box-shadow: 0 0 6px rgba(204, 255, 35, 0.3), 0 0 15px rgba(204, 255, 35, 0.1);
+transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.add-to-watchlist-btn:hover, .remove-from-watchlist:hover {
+  background: #ccff23 !important;
+  color: #050608 !important;
+  border-color: transparent !important;
+  box-shadow: 0 0 12px rgba(204, 255, 35, 0.6), 0 4px 15px rgba(0, 0, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+.add-to-watchlist-btn:active, .remove-from-watchlist:active {
+  transform: translateY(0.5px);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4) !important;
+}
+
+.add-to-watchlist-btn:hover .plus-icon {
+  color: #050608 !important;
+}
+/* ==========================================================================
+DEFAULT GRID FALLBACKS (Search Results Frame)
+========================================================================== */
+
+#movieListContainer {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);            
-  gap:1.5rem;          
-  width: 100%;
-  padding: 4rem;
-  justify-content: center;     
-  align-items: flex-start;
-  height: 160px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 28px;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 2rem 5rem 2rem;
+  box-sizing: border-box;
 }
 
+/* ==========================================================================
+   5. UNIFORM MY LIST TAB SYSTEM (UNIFIED PORTRAIT 5-COLUMN GRID)
+   ========================================================================== */
 
+#watchlistContainer.watchlist-results-wrap {
+  display: grid !important;
+  
+  /* 🟢 FORCES EXACTLY 5 EQUAL PORTRAIT COLUMNS MATCHING YOUR HOMEPAGE SPECIFICATIONS */
+  grid-template-columns: repeat(5, 1fr) !important; 
+  
+  /* Generates perfect breathing room below rows for full plot expansions */
+  gap: 6.5rem 1.5rem !important; 
+  
+  width: 100% !important;
+  padding: 4rem !important;
+ 
+  justify-items: center !important;
+  align-items: flex-start !important;
+  height: auto !important;
+  box-sizing: border-box !important;
+  overflow: visible !important;
+}
 
+/* 🟢 REMOVED INTERFERING 160px/280px RULES:
+   Re-aligns the tracking boxes to match the 180x260 proportions of your homepage */
+#watchlistContainer.watchlist-results-wrap .movie-card-track { 
+  width: 180px !important;  
+  height: 260px !important; 
+  position: relative !important;
+  flex: 0 0 auto !important;
+}
 
+#watchlistContainer.watchlist-results-wrap .universal-movie-card { 
+  width: 180px !important; 
+  height: 260px !important; 
+  top: 0 !important; 
+  left: 0 !important;
+}
 
+#watchlistContainer.watchlist-results-wrap .card-poster-img { 
+  width: 100% !important; 
+  height: 260px !important; /* Restores vertical portrait image height constraints */
+  object-fit: cover !important;
+  border-radius: 12px !important;
+}
 
+/* ==========================================================================
+   🟢 BULLETPROOF WATCHLIST HOVER SYNC (MIRRORS HOMEPAGE ROWS EXACTLY)
+   ========================================================================== */
+#watchlistContainer.watchlist-results-wrap .movie-card-track:hover .universal-movie-card {
+  width: 260px !important; 
+  height: max-content !important; 
+  min-height: 360px !important; 
+  
+  /* Spreads the extra width evenly over the 5-column layout track anchor slot */
+  left: calc((100% - 260px) / 2) !important; 
+  transform: translateY(-8px) !important;
+  
+  background-color: #141414 !important;
+  border: 1px solid #ccff23 !important; /* Premium glowing neon limeグリーン border perimeter */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.95) !important;
+  overflow: visible !important;
+  z-index: 999999 !important;
+}
+
+/* Ensures text content layers fill the layout perimeter edge-to-edge */
+#watchlistContainer.watchlist-results-wrap .card-hover-overlay {
+  padding: 1rem 1rem 1.5rem 1rem !important;
+  border-radius: 11px !important;
+}
